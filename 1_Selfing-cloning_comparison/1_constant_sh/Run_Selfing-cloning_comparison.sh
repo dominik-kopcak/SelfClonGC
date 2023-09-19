@@ -10,7 +10,7 @@
 #$ -V
 #$ -cwd
 #$ -t 1-1600		# Run command for each line of parameter file
-#$ -l h=c5|c6		# Run array job on this sub-server
+#$ -l h=c4|c5|c6		# Run array job on this sub-server
 #$ -o /data/hartfield/asex_load/scripts/output/1_Selfing-cloning_comparison
 #$ -e /data/hartfield/asex_load/scripts/error/1_Selfing-cloning_comparison
 

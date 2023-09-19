@@ -5,7 +5,7 @@ Uniparenting_rates <- c(0.00, 0.20, 0.40, 0.60, 0.80, 0.95, 0.99, 1.00)
 
 h_values = c(0.2, 0.5)
 
-Max_time=10000
+Max_time=20000
 
 N_replicates = 100
 
@@ -51,7 +51,7 @@ for (h_coefficient in h_values){
 				
 		Plot_variance_selfing <- Plot_variance_selfing +
 			geom_line(data=fitness_selfing_subset, aes(x=Time, y=Expected_variance_fitness, colour = Uniparenting_rate))+
-			geom_ribbon(data=fitness_selfing_subset, aes(x=Time, ymin=Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates, ymax=Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates, fill = Uniparenting_rate), alpha = 0.5)
+			geom_ribbon(data=fitness_selfing_subset, aes(x=Time, ymin=(Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates), ymax=(Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates), fill = Uniparenting_rate), alpha = 0.5)
 			
 		Plot_variance_cloning <- Plot_variance_cloning +
 			geom_line(data=fitness_cloning_subset, aes(x=Time, y=Expected_variance_fitness, colour = Uniparenting_rate))+

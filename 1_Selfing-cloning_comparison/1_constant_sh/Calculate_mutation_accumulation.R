@@ -1,6 +1,9 @@
 library(vcfR, quietly=TRUE)
 library(dplyr, quietly=TRUE)
 
+setwd("./Simulation_output")
+
+
 Uniparenting_rates = c(0, 0.2, 0.4, 0.6, 0.8, 0.95, 0.99, 1.00)
 N_uniparenting_rates = length(Uniparenting_rates)
 
@@ -135,6 +138,8 @@ Recessive_load_stat_cloning <- Recessive_load_cloning %>%
 Additive_load_stat_cloning <- Additive_load_cloning %>%
 	group_by(Selection_coefficient, Dominance_coefficient, Uniparenting_rate) %>%
 	summarise(Expected_additive_load=mean(N_segregating_mutations_cloning), SD_additive_load=sd(N_segregating_mutations_cloning), .groups = "rowwise")
+
+setwd("../")
 
 write.csv(Fixed_mutations_stat_cloning, file="Data_cloning_fixed_mutations.csv")
 write.csv(Additive_load_stat_cloning, file="Data_cloning_additive_load.csv")

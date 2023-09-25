@@ -5,9 +5,7 @@ GC_rates = c(10**seq(-10, -4, 2))
 
 h_values = c(0.2, 0.5)
 
-Max_time=10000
-
-N_replicates = 5
+N_replicates = 100
 
 Fitness_GC <- read.csv("Data_fitness_evolution_GC.csv")
 Fitness_GC$GC_rate <- as.factor(Fitness_GC$GC_rate)
@@ -44,7 +42,7 @@ for (h_coefficient in h_values){
 		labs(title="Population fitness\nunder cloning reproduction with gene conversion",
 		     x="Time",
 		     y="Mean fitness",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp,\nnumber of replicates = 5, sample size = 50, run for 10 000 generations, mean tract length = 100 bp", sep=""))+
+		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp,\nnumber of replicates = 100, sample size = 50, run for 20 000 generations, mean tract length = 100 bp", sep=""))+
 		guides(fill = guide_legend(title = "GC rate")) +
 	     
 		theme(panel.grid.major=element_blank(),
@@ -71,7 +69,7 @@ for (h_coefficient in h_values){
 		labs(title="Population fitness variance\nunder cloning reproduction with gene conversion",
 		     x="Time",
 		     y="Fitness variance",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 5, sample size = 50, run for 5 000 generations", sep=""))+
+		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp,\nnumber of replicates = 100, sample size = 50, run for 20 000 generations, mean tract length = 100 bp", sep=""))+
 		guides(fill = guide_legend(title = "GC rate")) +
 	     
 		theme(panel.grid.major=element_blank(),

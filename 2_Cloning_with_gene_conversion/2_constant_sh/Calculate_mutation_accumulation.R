@@ -1,19 +1,21 @@
 library(vcfR, quietly=TRUE)
 library(dplyr, quietly=TRUE)
 
+setwd("./Simulation_outputs")
+
 h_values = c(0.2, 0.5)
 N_h_values = length(h_values)
 
 s_values = c(0.01)
 N_s_values = length(s_values)
 
-gamma_values = c(10**seq(-4, -10, -2))
+gamma_values = c(10**seq(-4, -10, -1))
 N_gamma_values = length(gamma_values)
 
 lambda_values = c(100)
 N_lambda_values = length(lambda_values)
 
-N_replicates = 5
+N_replicates = 100
 
 Fixed_mutations_list_GC <- list.files(pattern="X_Fixed_mutations*")
 Segregating_mutations_list_GC <-list.files(pattern="X_Sampled_individuals*")
@@ -81,6 +83,8 @@ Recessive_load_stat_GC <- Recessive_load_GC %>%
 Additive_load_stat_GC <- Additive_load_GC %>%
 	group_by(Selection_coefficient, Dominance_coefficient, GC_rate) %>%
 	summarise(Expected_additive_load=mean(N_segregating_mutations_GC), SD_additive_load=sd(N_segregating_mutations_GC), .groups = "rowwise")
+
+setwd("../")
 
 write.csv(Fixed_mutations_stat_GC, file="Data_GC_fixed_mutations.csv")
 write.csv(Additive_load_stat_GC, file="Data_GC_additive_load.csv")

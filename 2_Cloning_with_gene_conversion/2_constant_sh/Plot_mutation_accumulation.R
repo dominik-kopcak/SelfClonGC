@@ -2,7 +2,7 @@ library(ggplot2)
 library(patchwork)
 library(dplyr)
 
-replicate_number=5
+replicate_number=100
 
 GC_recessive_load_all <- read.csv("Data_GC_recessive_load.csv")
 GC_additive_load_all <- read.csv("Data_GC_additive_load.csv")
@@ -60,7 +60,7 @@ Plot_additive <- ggplot()+
 	labs(subtitle="Additive load",
 	     x="Rate of gene conversion",
 	     y="Total mutation count (x 1000)",
-	     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 100 bp\nnumber of replicates = 5, sample size = 50, run for 10 000 generations", sep=""),
+	     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 100 bp\nnumber of replicates = 100, sample size = 50, run for 20 000 generations", sep=""),
 	     colour="Reproduction: ")+
 	theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),
@@ -78,7 +78,7 @@ Plot_additive <- ggplot()+
 	      legend.position=c(0.12, 2.1),
 	      legend.background=element_rect(colour="black"))+
 	      
-  	scale_x_log10(breaks=c(10**seq(-10, -4, 2)))
+  	scale_x_log10(breaks=c(10**seq(-10, -4, 1)))
   	
 Plot <- Plot_recessive/Plot_additive
 

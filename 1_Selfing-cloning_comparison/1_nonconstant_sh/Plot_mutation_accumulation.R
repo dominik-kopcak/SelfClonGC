@@ -117,4 +117,3 @@ ggsave(filename=plot_name,
 	plot=Plot,
 	dpi=600)
 	
-}

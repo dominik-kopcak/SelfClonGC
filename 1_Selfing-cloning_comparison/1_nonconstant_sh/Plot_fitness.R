@@ -15,27 +15,27 @@ Fitness_cloning$Uniparenting_rate <- as.factor(Fitness_cloning$Uniparenting_rate
 
 
 
-Plot_mean_selfing <- Plot_mean_selfing +
+Plot_mean_selfing <- 
 	ggplot(data=Fitness_selfing, aes(x=Time, y=Expected_mean_fitness), size=1) +
 	geom_line(data=Fitness_selfing, aes(x=Time, y=Expected_mean_fitness, colour = Uniparenting_rate))+
 	geom_ribbon(data=Fitness_selfing, aes(x=Time, ymin=Expected_mean_fitness - 1.96*SD_mean_fitness/N_replicates, ymax=Expected_mean_fitness + 1.96*SD_mean_fitness/N_replicates, fill = Uniparenting_rate), alpha = 0.5)
 	
-Plot_mean_cloning <- Plot_mean_cloning +
+Plot_mean_cloning <-
 	ggplot(data=Fitness_cloning, aes(x=Time, y=Expected_mean_fitness), size=1) +
 	geom_line(data=Fitness_cloning, aes(x=Time, y=Expected_mean_fitness, colour = Uniparenting_rate))+
 	geom_ribbon(data=Fitness_cloning, aes(x=Time, ymin=Expected_mean_fitness - 1.96*SD_mean_fitness/N_replicates, ymax=Expected_mean_fitness + 1.96*SD_mean_fitness/N_replicates, fill = Uniparenting_rate), alpha = 0.5)
 		
-Plot_variance_selfing <- Plot_variance_selfing +
+Plot_variance_selfing <-
 	ggplot(data=Fitness_selfing, aes(x=Time, y=Expected_variance_fitness), size=1) +
 	geom_line(data=Fitness_selfing, aes(x=Time, y=Expected_variance_fitness, colour = Uniparenting_rate))+
 	geom_ribbon(data=Fitness_selfing, aes(x=Time, ymin=(Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates), ymax=(Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates), fill = Uniparenting_rate), alpha = 0.5)
 	
-Plot_variance_cloning <- Plot_variance_cloning +
+Plot_variance_cloning <- 
 	ggplot(data=Fitness_cloning, aes(x=Time, y=Expected_variance_fitness), size=1) +
 	geom_line(data=Fitness_cloning, aes(x=Time, y=Expected_variance_fitness, colour = Uniparenting_rate))+
 	geom_ribbon(data=Fitness_cloning, aes(x=Time, ymin=Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates, ymax=Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates, fill = Uniparenting_rate), alpha = 0.5)
 
-}
+
 
 Plot_mean_selfing <- Plot_mean_selfing +
 scale_colour_viridis_d(guide = "none") + 

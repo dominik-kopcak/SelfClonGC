@@ -1,7 +1,7 @@
 library(vcfR, quietly=TRUE)
 library(dplyr, quietly=TRUE)
 
-setwd("./Simulation_output")
+setwd("./Simulation_outputs")
 
 
 Uniparenting_rates = c(0, 0.2, 0.4, 0.6, 0.8, 0.95, 0.99, 1.00)

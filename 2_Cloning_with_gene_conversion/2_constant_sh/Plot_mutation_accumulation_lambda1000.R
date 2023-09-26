@@ -60,7 +60,7 @@ Plot_additive <- ggplot()+
 	labs(subtitle="Additive load",
 	     x="Rate of gene conversion",
 	     y="Total mutation count (x 1000)",
-	     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 100 bp\nnumber of replicates = 100, sample size = 50, run for 20 000 generations", sep=""),
+	     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 1000 bp\nnumber of replicates = 100, sample size = 50, run for 20 000 generations", sep=""),
 	     colour="Reproduction: ")+
 	theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),

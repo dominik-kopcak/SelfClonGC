@@ -9,7 +9,7 @@ N_h_values = length(h_values)
 s_values = c(0.01)
 N_s_values = length(s_values)
 
-gamma_values = c(10**seq(-4, -10, -1))
+gamma_values = c(10**seq(-5, -11, -2))
 N_gamma_values = length(gamma_values)
 
 lambda_values = c(100)

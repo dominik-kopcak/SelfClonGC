@@ -42,7 +42,7 @@ for (h_coefficient in h_values){
 		labs(title="Population fitness\nunder cloning reproduction with gene conversion",
 		     x="Time",
 		     y="Mean fitness",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp,\nnumber of replicates = 100, sample size = 50, run for 20 000 generations, mean tract length = 100 bp", sep=""))+
+		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp,\nnumber of replicates = 100, sample size = 50, run for 20 000 generations, mean tract length = 1000 bp", sep=""))+
 		guides(fill = guide_legend(title = "GC rate")) +
 	     
 		theme(panel.grid.major=element_blank(),
@@ -69,7 +69,7 @@ for (h_coefficient in h_values){
 		labs(title="Population fitness variance\nunder cloning reproduction with gene conversion",
 		     x="Time",
 		     y="Fitness variance",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp,\nnumber of replicates = 100, sample size = 50, run for 20 000 generations, mean tract length = 100 bp", sep=""))+
+		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp,\nnumber of replicates = 100, sample size = 50, run for 20 000 generations, mean tract length = 1000 bp", sep=""))+
 		guides(fill = guide_legend(title = "GC rate")) +
 	     
 		theme(panel.grid.major=element_blank(),

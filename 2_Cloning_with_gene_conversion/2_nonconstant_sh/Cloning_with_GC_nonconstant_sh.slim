@@ -90,7 +90,7 @@ reproduction(){
 	sim.addSubpop("p1", sim.getValue("K"));
 }
 
-early() {
+late() {
 
 	meanFitness = mean(p1.cachedFitness(NULL));
 	varianceFitness = var(p1.cachedFitness(NULL));
@@ -118,7 +118,7 @@ mutationEffect(m1) {
 		return 1.0 + mut.getValue("dom") * mut.selectionCoeff;
 }
 
-20000 late(){
+30000 late(){
 
 	sim.simulationFinished();
 	allIndividuals=sim.subpopulations.individuals;

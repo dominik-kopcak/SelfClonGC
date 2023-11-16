@@ -10,62 +10,51 @@ Max_time=20000
 
 N_replicates = 100
 
+GC_colour_scheme <- c('#ffffb2','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#b10026')
+Selfing_colour_scheme <- c('#fff7fb','#ece7f2','#d0d1e6','#a6bddb','#74a9cf','#3690c0','#0570b0','#034e7b')
+
 Fitness_selfing <- read.csv("/home/dvojkvietok/Documents/SlefingCloningGC/1_Selfing-cloning_comparison/1_constant_sh/full_version_20/Data_fitness_evolution_selfing.csv")
 Fitness_selfing$Uniparenting_rate <- as.factor(Fitness_selfing$Uniparenting_rate)
 
 Fitness_GC <- read.csv("/home/dvojkvietok/Documents/SlefingCloningGC/2_Cloning_with_gene_conversion/2_constant_sh/lambda_100/Data_fitness_evolution_GC.csv")
 Fitness_GC$GC_rate <- as.factor(Fitness_GC$GC_rate)
 
-for (h_coefficient in h_values){
+### h = 0.2
 
-        fitness_selfing_subset_0 <- Fitness_selfing %>%
-		 filter(Dominance_coefficient == h_coefficient,
-			Uniparenting_rate == 0)
+Plot_mean_selfing <- ggplot() +
+	geom_line(data=subset(Fitness_selfing, Dominance_coefficient %in% 0.2), aes(x=Time, y=Expected_mean_fitness, fill = Uniparenting_rate))+
+	# geom_ribbon(data=subset(Fitness_selfing, Dominance_coefficient %in% 0.2), aes(x=Time, ymin=Expected_mean_fitness - 1.96*SD_mean_fitness/N_replicates, ymax=Expected_mean_fitness + 1.96*SD_mean_fitness/N_replicates, fill = Uniparenting_rate)) +
 	
-	Plot_mean_selfing <- ggplot(data=fitness_selfing_subset_0, aes(x=Time, y=Expected_mean_fitness), size=1)
-	Plot_variance_selfing <- ggplot(data=fitness_selfing_subset_0, aes(x=Time, y=Expected_variance_fitness), size=1)
-	
-	for (rate in Uniparenting_rates){
-	
-		fitness_selfing_subset <- Fitness_selfing %>%
-			filter(Dominance_coefficient == h_coefficient,
-				Uniparenting_rate == rate)
-				
-		Plot_mean_selfing <- Plot_mean_selfing +
-			geom_line(data=fitness_selfing_subset, aes(x=Time, y=Expected_mean_fitness, colour = Uniparenting_rate))+
-			geom_ribbon(data=fitness_selfing_subset, aes(x=Time, ymin=Expected_mean_fitness - 1.96*SD_mean_fitness/N_replicates, ymax=Expected_mean_fitness + 1.96*SD_mean_fitness/N_replicates, fill = Uniparenting_rate), alpha = 0.5)
+	geom_line(data=subset(Fitness_GC, Dominance_coefficient %in% 0.2), aes(x=Time, y=Expected_mean_fitness, colour = GC_rate))
+	# geom_ribbon(aes(x=Time, ymin=Expected_mean_fitness - 1.96*SD_mean_fitness/N_replicates, ymax=Expected_mean_fitness + 1.96*SD_mean_fitness/N_replicates, fill = GC_rate), alpha = 0.5)
 
-		Plot_variance_selfing <- Plot_variance_selfing +
-			geom_line(data=fitness_selfing_subset, aes(x=Time, y=Expected_variance_fitness, colour = Uniparenting_rate))+
-			geom_ribbon(data=fitness_selfing_subset, aes(x=Time, ymin=(Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates), ymax=(Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates), fill = Uniparenting_rate), alpha = 0.5)
-	}
+
+
+
+Plot_variance_selfing <- ggplot(data=subset(Fitness_selfing, Dominance_coefficient %in% 0.2)) +
+	# geom_line(aes(x=Time, y=Expected_variance_fitness, colour = Uniparenting_rate))+
+	geom_ribbon(aes(x=Time, ymin=(Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates), ymax=(Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates), fill = Uniparenting_rate), alpha = 0.5)
 	
-	for (GC in GC_rates){
-		
-		Fitness_GC_subset <- Fitness_GC %>%
-			filter(Dominance_coefficient == h_coefficient,
-				GC_rate == GC)
-				
-		Plot_mean_selfing <- Plot_mean_selfing +
-			geom_line(data=Fitness_GC_subset, aes(x=Time, y=Expected_mean_fitness, colour = GC_rate))+
-			geom_ribbon(data=Fitness_GC_subset, aes(x=Time, ymin=Expected_mean_fitness - 1.96*SD_mean_fitness/N_replicates, ymax=Expected_mean_fitness + 1.96*SD_mean_fitness/N_replicates, fill = GC_rate), alpha = 0.5)
+Plot_variance_selfing <- ggplot(data=subset(Fitness_GC, Dominance_coefficient %in% 0.2)) +
+	geom_line(aes(x=Time, y=Expected_variance_fitness, colour = GC_rate,))
+	# geom_ribbon(aes(x=Time, ymin=Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates), ymax=(Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates), fill = Uniparenting_rate), alpha = 0.5)
 			
-		Plot_variance_selfing <- Plot_variance_selfing +
-			geom_line(data=Fitness_GC_subset, aes(x=Time, y=Expected_variance_fitness, colour = GC_rate))+
-			geom_ribbon(data=Fitness_GC_subset, aes(x=Time, ymin=(Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates), ymax=(Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates), fill = GC_rate), alpha = 0.5) 	
-	}
+
+
 	
-	Plot_mean_selfing <- Plot_mean_selfing +
+Plot_mean_selfing <- Plot_mean_selfing +
 		
-		scale_colour_viridis_d(guide = "none", option = "plasma") + 
-		scale_fill_viridis_d(option = "plasma") + 
+		scale_colour_manual(name="GC rate",
+				    values = GC_colour_scheme) + 
+		
+		scale_fill_manual(name="Selfing rate",
+				  values = Selfing_colour_scheme) + 
 		
 		labs(title="Population fitness\nselfing vs cloning with GC",
 		     x="Time",
 		     y="Mean fitness",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = #, sample size = 50, run for # 000 generations", sep=""))+
-		guides(fill = guide_legend(title = "Selfing rate")) +
-	     
+		     caption=paste("s = 0.01, h = 0.2, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = #, sample size = 50, run for # 000 generations", sep=""))+
+		     
 		theme(panel.grid.major=element_blank(),
     	           panel.grid.minor=element_blank(),
     	  	   panel.background=element_blank(),
@@ -85,12 +74,15 @@ for (h_coefficient in h_values){
 	    	   legend.key.size = unit(1, "cm"))
 	    	       	   
 	 Plot_variance_selfing <- Plot_variance_selfing +
-		scale_colour_viridis_d(guide = "none", option = "plasma") + 
-		scale_fill_viridis_d(option = "plasma") + 
+	 
+		scale_colour_viridis_d(name="Legend 1") + 
+		
+		scale_fill_viridis_d(name="Legend 1",
+				     option = "plasma") + 
 		labs(title="Population fitness variance\nunder selfing reproduction",
 		     x="Time",
 		     y="Fitness variance",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = #, sample size = 50, run for # 000 generations", sep=""))+
+		     caption=paste("s = 0.01, h = 0.2, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = #, sample size = 50, run for # 000 generations", sep=""))+
 		guides(fill = guide_legend(title = "Selfing rate")) +
 	     
 		theme(panel.grid.major=element_blank(),
@@ -112,13 +104,14 @@ for (h_coefficient in h_values){
 	    	   legend.key.size = unit(1, "cm"))
 
 
-plot_mean_selfing_name <- paste("Figure_mean_fitness_selfing_vs_GC_", h_coefficient, ".png", sep="")
-ggsave(filename = plot_mean_selfing_name,
+ggsave(filename = "Figure_mean_fitness_selfing_vs_GC_0.2.png",
 	plot = Plot_mean_selfing,
 	dpi = 600)
 
-plot_variance_selfing_name <- paste("Figure_variance_fitness_selfing_vs_GC_", h_coefficient, ".png", sep="")
-ggsave(filename = plot_variance_selfing_name,
+ggsave(filename = "Figure_variance_fitness_selfing_vs_GC_0.2.png",
 	plot = Plot_variance_selfing,
 	dpi = 600)
-}
+
+
+
+### h = 0.5

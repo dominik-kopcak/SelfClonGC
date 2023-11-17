@@ -3,7 +3,7 @@ library(patchwork)
 library(dplyr)
 
 replicate_number=20
-colours <- c("Selfing"="darkolivegreen2","Cloning"="darkolivegreen")
+colours <- c("Cloning"="darkolivegreen")
 
 #Selfing_recessive_load_all <- read.csv("Data_selfing_recessive_load.csv")
 #Selfing_additive_load_all <- read.csv("Data_selfing_additive_load.csv")
@@ -53,8 +53,7 @@ Plot_recessive <- ggplot()+
 	
 	labs(y="Homozygous genotypes",
 	     x="Rate of uniparental reproduction",
-	     title="Accumulation of mutations\nin populations with uniparental reproduction",
-	     subtitle="Recessive load")+
+	     title="Accumulation of mutations\nin populations with uniparental reproduction")+
 	 theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),
     	      panel.background=element_blank(),
@@ -65,7 +64,7 @@ Plot_recessive <- ggplot()+
 	      axis.title.y=element_text(size=15),
 	      axis.title.x=element_blank(),
 	      
-	      axis.text.x=element_text(size=15),
+	      axis.text.x=element_text(size=0),
 	      axis.text.y=element_text(size=15),
 	      
 	      legend.position="none")+
@@ -87,9 +86,8 @@ Plot_additive <- ggplot()+
 			    ymin=Cloning_add_min/1000), color="darkolivegreen", size=1, 
 			key_glyph = draw_key_rect)+
 	
-	labs(subtitle="Additive load",
-	     x="Rate of uniparental reproduction",
-	     y="Total mutation count (x 1000)",
+	labs(x="Rate of uniparental reproduction",
+	     y="Total mutation count\n(x 1000)",
 	     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = ", replicate_number,", sample size = 50, run for 60 000 generations", sep=""),
 	     colour="Reproduction: ")+
 	theme(panel.grid.major=element_blank(),
@@ -105,9 +103,11 @@ Plot_additive <- ggplot()+
 	      axis.text.x=element_text(size=15),
 	      axis.text.y=element_text(size=15),
 	      
-	      legend.position=c(0.2, 2.1),
-	      legend.background=element_rect(colour="black"))+
-	      
+	      legend.position=c(0.15, 0.8),
+	      legend.key = element_rect(fill = "white"))+
+
+	guides(colour = guide_legend(override.aes = list(size = 8)))+
+	
 	scale_colour_manual(values = colours)+
 	scale_x_continuous(breaks=c(0.95, 0.99, 1))
 

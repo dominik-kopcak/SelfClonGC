@@ -45,7 +45,7 @@ for (h_coefficient in h_values){
 			
 		Plot_mean_cloning <- Plot_mean_cloning +
 			geom_line(data=fitness_cloning_subset, aes(x=Time, y=Expected_mean_fitness, colour = Uniparenting_rate))+
-			geom_ribbon(data=fitness_cloning_subset, aes(x=Time, ymin=Expected_mean_fitness - 1.96*SD_mean_fitness/N_replicates, ymax=Expected_mean_fitness + 1.96*SD_mean_fitness/N_replicates, fill = Uniparenting_rate), alpha = 0.5)
+			geom_ribbon(data=fitness_cloning_subset, aes(x=Time, ymin=(Expected_mean_fitness - 1.96*SD_mean_fitness/N_replicates), ymax=(Expected_mean_fitness + 1.96*SD_mean_fitness/N_replicates), fill = Uniparenting_rate), alpha = 0.5)
 				
 #		Plot_variance_selfing <- Plot_variance_selfing +
 #			geom_line(data=fitness_selfing_subset, aes(x=Time, y=Expected_variance_fitness, colour = Uniparenting_rate))+
@@ -53,7 +53,7 @@ for (h_coefficient in h_values){
 			
 		Plot_variance_cloning <- Plot_variance_cloning +
 			geom_line(data=fitness_cloning_subset, aes(x=Time, y=Expected_variance_fitness, colour = Uniparenting_rate))+
-			geom_ribbon(data=fitness_cloning_subset, aes(x=Time, ymin=Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates, ymax=Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates, fill = Uniparenting_rate), alpha = 0.5)
+			geom_ribbon(data=fitness_cloning_subset, aes(x=Time, ymin=(Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates), ymax=(Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates), fill = Uniparenting_rate), alpha = 0.5)
 	
 	}
 	
@@ -90,7 +90,7 @@ for (h_coefficient in h_values){
 		labs(title="Population fitness\nunder cloning reproduction",
 		     x="Time",
 		     y="Mean fitness",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = ", N_replicates, ", sample size = 50, run for 5 000 generations", sep=""))+
+		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = ", N_replicates, ", sample size = 50, run for 60 000 generations", sep=""))+
 		guides(fill = guide_legend(title = "Cloning rate")) +
 	     
 		theme(panel.grid.major=element_blank(),

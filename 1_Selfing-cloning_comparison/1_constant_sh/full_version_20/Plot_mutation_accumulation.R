@@ -64,7 +64,7 @@ Plot_recessive <- ggplot()+
 	      axis.title.y=element_text(size=15),
 	      axis.title.x=element_blank(),
 	      
-	      axis.text.x=element_text(size=15),
+	      axis.text.x=element_text(size=0),
 	      axis.text.y=element_text(size=15),
 	      
 	      legend.position="none")+
@@ -100,7 +100,7 @@ Plot_additive <- ggplot()+
 	      axis.title.y=element_text(size=15),
 	      axis.title.x=element_text(size=15),
 	      
-	      axis.text.x=element_text(size=0),
+	      axis.text.x=element_text(size=15),
 	      axis.text.y=element_text(size=15),
 	      
 	      legend.position=c(0.12, 1.9),

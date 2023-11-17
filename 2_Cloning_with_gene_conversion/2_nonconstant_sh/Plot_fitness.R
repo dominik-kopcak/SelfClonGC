@@ -3,7 +3,7 @@ library(ggplot2)
 
 gamma_values = c(10**seq(-5, -7, -1))
 
-Max_time  =30000
+Max_time =30000
 
 N_replicates = 5
 
@@ -29,8 +29,9 @@ scale_fill_viridis_d() +
 labs(title="Population fitness\nunder cloning reproduction",
      x="Time",
      y="Mean fitness",
-     caption=paste("################################, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 5, sample size = 50, run for 30 000 generations", sep=""))+
-guides(fill = guide_legend(title = "Cloning rate")) +
+     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 5, sample size = 50, run for 30 000 generations", sep=""))+
+guides(colour = guide_legend(title = "Cloning rate", override.aes = list(size = 10)),
+       fill = "none") +
 
 theme(panel.grid.major=element_blank(),
    panel.grid.minor=element_blank(),
@@ -56,8 +57,9 @@ scale_fill_viridis_d() +
 labs(title="Population fitness variance\nunder cloning reproduction",
      x="Time",
      y="Fitness variance",
-     caption=paste("######################, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 5, sample size = 50, run for 30 000 generations", sep=""))+
-guides(fill = guide_legend(title = "Cloning rate")) +
+     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 5, sample size = 50, run for 30 000 generations", sep=""))+
+guides(colour = guide_legend(title = "Cloning rate", override.aes = list(size = 10)),
+       fill = "none") +
 
 theme(panel.grid.major=element_blank(),
    panel.grid.minor=element_blank(),

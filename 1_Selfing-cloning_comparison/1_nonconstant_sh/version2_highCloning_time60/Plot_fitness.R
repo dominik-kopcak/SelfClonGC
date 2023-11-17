@@ -11,12 +11,12 @@ Fitness_cloning <- read.csv("Data_fitness_evolution_cloning_60000.csv")
 Fitness_cloning$Uniparenting_rate <- as.factor(Fitness_cloning$Uniparenting_rate)
 	
 Plot_mean_cloning <-
-	ggplot(data=Fitness_cloning, aes(x=Time, y=Expected_mean_fitness), size=1) +
+	ggplot() +
 	geom_line(data=Fitness_cloning, aes(x=Time, y=Expected_mean_fitness, colour = Uniparenting_rate))+
 	geom_ribbon(data=Fitness_cloning, aes(x=Time, ymin=Expected_mean_fitness - 1.96*SD_mean_fitness/N_replicates, ymax=Expected_mean_fitness + 1.96*SD_mean_fitness/N_replicates, fill = Uniparenting_rate), alpha = 0.5)
 		
 Plot_variance_cloning <- 
-	ggplot(data=Fitness_cloning, aes(x=Time, y=Expected_variance_fitness), size=1) +
+	ggplot() +
 	geom_line(data=Fitness_cloning, aes(x=Time, y=Expected_variance_fitness, colour = Uniparenting_rate))+
 	geom_ribbon(data=Fitness_cloning, aes(x=Time, ymin=Expected_variance_fitness - 1.96*SD_variance_fitness/N_replicates, ymax=Expected_variance_fitness + 1.96*SD_variance_fitness/N_replicates, fill = Uniparenting_rate), alpha = 0.5)
 
@@ -28,8 +28,9 @@ scale_fill_viridis_d() +
 labs(title="Population fitness\nunder cloning reproduction",
      x="Time",
      y="Mean fitness",
-     caption=paste("################################, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 35, sample size = 50, run for 20 000 generations", sep=""))+
-guides(fill = guide_legend(title = "Cloning rate")) +
+     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 15, sample size = 50, run for 60 000 generations", sep=""))+
+guides(colour = guide_legend(title = "Cloning rate", override.aes = list(size = 10)),
+       fill = "none") +
 
 theme(panel.grid.major=element_blank(),
    panel.grid.minor=element_blank(),
@@ -55,8 +56,9 @@ scale_fill_viridis_d() +
 labs(title="Population fitness variance\nunder cloning reproduction",
      x="Time",
      y="Fitness variance",
-     caption=paste("######################, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 35, sample size = 50, run for 20 000 generations", sep=""))+
-guides(fill = guide_legend(title = "Cloning rate")) +
+     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 15, sample size = 50, run for 60 000 generations", sep=""))+
+guides(colour = guide_legend(title = "Cloning rate", override.aes = list(size = 10)),
+       fill = "none") +
 
 theme(panel.grid.major=element_blank(),
    panel.grid.minor=element_blank(),

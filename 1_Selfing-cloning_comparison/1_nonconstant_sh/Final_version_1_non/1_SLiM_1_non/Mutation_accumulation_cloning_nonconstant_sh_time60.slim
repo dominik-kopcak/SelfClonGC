@@ -1,0 +1,47 @@
+initialize(){
+	
+	defineConstant("k", 91.63); // k chosen such that mean h is 0.2
+
+	initializeMutationRate(4e-9); // based on ##############
+	initializeRecombinationRate(4e-8); // so that we can expect 1 crossing-over in meiosis, based on ###############
+	initializeMutationType("m1", 0, "g", -0.01, 0.2); // 0.01 is the mean, 0.2 is the shape parameter
+	initializeGenomicElementType("g1", m1, 1);
+	initializeGenomicElement(g1, 0, 24999999);
+}
+
+1 early(){
+
+	sim.addSubpop("p1", 5000);
+	p1.setCloningRate(Clon_rate);
+}
+
+early() {
+
+	meanFitness = mean(p1.cachedFitness(NULL));
+	varianceFitness = var(p1.cachedFitness(NULL));
+	writeFile(Fitness_mean_file_name, paste(meanFitness), append=T);
+	writeFile(Fitness_variance_file_name, paste(varianceFitness), append=T);
+}
+
+mutation(m1) {
+	s=mut.selectionCoeff;
+	h=runif(1, min=0, max=E^(s*k)); // deleterious mutations have negative s
+	mut.setValue("dom", h);
+	return T;
+}
+
+mutationEffect(m1) {
+	if (homozygous)
+		return 1.0 + mut.selectionCoeff;
+	else
+		return 1.0 + mut.getValue("dom") * mut.selectionCoeff;
+}
+
+60000 late(){
+
+	sim.simulationFinished();
+	allIndividuals=sim.subpopulations.individuals;
+	sampledIndividuals=sample(allIndividuals, 50);
+	sampledIndividuals.genomes.outputVCF(filePath=File_path_i);
+	sim.outputFixedMutations(filePath=File_path_f);
+}

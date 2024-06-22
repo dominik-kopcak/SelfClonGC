@@ -5,11 +5,11 @@ library(dplyr)
 replicate_number=100
 colours <- c("Selfing"="black", "Cloning with GC rate 1E-5"="brown", "Cloning with GC rate 1E-6"="red", "Cloning with GC rate 1E-7"="orange", "Cloning with GC rate 1E-8"="gold","Cloning with GC rate 1E-9"="yellow")
 
-Selfing_recessive_load_all <- read.csv("/home/dvojkvietok/Documents/SlefingCloningGC/1_Selfing-cloning_comparison/1_constant_sh/full_version_60/Data_selfing_recessive_load_full_60000.csv")
-Selfing_additive_load_all <- read.csv("/home/dvojkvietok/Documents/SlefingCloningGC/1_Selfing-cloning_comparison/1_constant_sh/full_version_60/Data_selfing_additive_load_full_60000.csv")
+Selfing_recessive_load_all <- read.csv("~/Documents/SlefingCloningGC/1_Selfing-cloning_comparison/1_constant_sh/full_version_60/Data_selfing_recessive_load_full_60000.csv")
+Selfing_additive_load_all <- read.csv("~/Documents/SlefingCloningGC/1_Selfing-cloning_comparison/1_constant_sh/full_version_60/Data_selfing_additive_load_full_60000.csv")
 
-Cloning_recessive_load_all <- read.csv("/home/dvojkvietok/Documents/SlefingCloningGC/2_Cloning_with_gene_conversion/2_constant_sh/Model_december/Full_60000/Data_GC_recessive_load_vXII_full_60.csv")
-Cloning_additive_load_all <- read.csv("/home/dvojkvietok/Documents/SlefingCloningGC/2_Cloning_with_gene_conversion/2_constant_sh//Model_december/Full_60000/Data_GC_additive_load_vXII_full_60.csv")
+Cloning_recessive_load_all <- read.csv("~/Documents/SlefingCloningGC/2_Cloning_with_gene_conversion/2_constant_sh/Model_december/Full_60000/Data_GC_recessive_load_vXII_full_60.csv")
+Cloning_additive_load_all <- read.csv("~/Documents/SlefingCloningGC/2_Cloning_with_gene_conversion/2_constant_sh//Model_december/Full_60000/Data_GC_additive_load_vXII_full_60.csv")
 
 Cloning_recessive_load_5 <- Cloning_recessive_load_all %>%
 	filter(GC_rate == 10**(-5))

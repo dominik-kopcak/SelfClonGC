@@ -19,9 +19,11 @@ Segregating_mutations_list_cloning <- Segregating_mutations_list[grepl("cloning"
 
 N_seg_homo_genotypes_selfing <- rep(c(0), each=N_replicates*N_uniparenting_rates)
 N_segregating_mutations_selfing <- rep(c(0), each=N_replicates*N_uniparenting_rates)
+Relative_homo_selfing <- rep(c(0), each=N_replicates*N_uniparenting_rates)
 
 N_seg_homo_genotypes_cloning <- rep(c(0), each=N_replicates*N_uniparenting_rates)
 N_segregating_mutations_cloning <- rep(c(0), each=N_replicates*N_uniparenting_rates)
+Relative_homo_cloning <- rep(c(0), each=N_replicates*N_uniparenting_rates)
 
 j_s = 0
 for (y in Segregating_mutations_list_selfing){ 
@@ -40,6 +42,8 @@ for (y in Segregating_mutations_list_selfing){
 	
 	N_seg_homo_genotypes_selfing[j_s] <- length(genotype_number[genotype_number == 2]) ## recessive load
 	N_segregating_mutations_selfing[j_s] <- sum(genotype_number) ## additive load
+	Relative_homo_selfing[j_s] <- 2*N_seg_homo_genotypes_selfing[j_s]/N_segregating_mutations_selfing[j_s] ## fraction of mutations that are in homozygous state
+
 }
 
 j_c = 0
@@ -59,6 +63,8 @@ for (y in Segregating_mutations_list_cloning){
 	
 	N_seg_homo_genotypes_cloning[j_c] <- length(genotype_number[genotype_number == 2]) ## recessive load
 	N_segregating_mutations_cloning[j_c] <- sum(genotype_number) ## additive load
+	Relative_homo_cloning[j_c] <- 2*N_seg_homo_genotypes_cloning[j_c]/N_segregating_mutations_cloning[j_c] ## fraction of mutations that are in homozygous state
+
 }
 
 # print(Segregating_mutations_list_selfing)
@@ -69,9 +75,13 @@ Replicate <- rep(c(1:N_replicates), times = N_uniparenting_rates)
  
 Recessive_load_selfing <- data.frame(Uniparenting_rate, Replicate, N_seg_homo_genotypes_selfing)
 Additive_load_selfing <- data.frame(Uniparenting_rate, Replicate, N_segregating_mutations_selfing)
+Relative_homozygosity_selfing <- data.frame(Uniparenting_rate, Replicate, Relative_homo_selfing)
+
 
 Recessive_load_cloning <- data.frame(Uniparenting_rate, Replicate, N_seg_homo_genotypes_cloning)
 Additive_load_cloning <- data.frame(Uniparenting_rate, Replicate, N_segregating_mutations_cloning)
+Relative_homozygosity_cloning <- data.frame(Uniparenting_rate, Replicate, Relative_homo_cloning)
+
 
 
 ### Summarize and save data into files
@@ -86,6 +96,10 @@ Additive_load_stat_selfing <- Additive_load_selfing %>%
 	group_by(Uniparenting_rate) %>%
 	summarise(Expected_additive_load=mean(N_segregating_mutations_selfing), SD_additive_load=sd(N_segregating_mutations_selfing), .groups = "rowwise")
 
+Relative_homozygosity_stat_selfing <- Relative_homozygosity_selfing %>%
+	group_by(Uniparenting_rate) %>%
+	summarise(Expected_relative_homozygosity=mean(Relative_homo_selfing), SD_relative_homozygosity=sd(Relative_homo_selfing), .groups = "rowwise")
+
 
 ## Cloning
 
@@ -98,10 +112,27 @@ Additive_load_stat_cloning <- Additive_load_cloning %>%
 	group_by(Uniparenting_rate) %>%
 	summarise(Expected_additive_load=mean(N_segregating_mutations_cloning), SD_additive_load=sd(N_segregating_mutations_cloning), .groups = "rowwise")
 
+Relative_homozygosity_stat_cloning <- Relative_homozygosity_cloning %>%
+	group_by(Uniparenting_rate) %>%
+	summarise(Expected_relative_homozygosity=mean(Relative_homo_cloning), SD_relative_homozygosity=sd(Relative_homo_cloning), .groups = "rowwise")
+
+
 setwd("../")
 
 write.csv(Additive_load_stat_selfing, file="Data_selfing_additive_load.csv")
 write.csv(Recessive_load_stat_selfing, file="Data_selfing_recessive_load.csv")
+write.csv(Relative_homozygosity_stat_selfing, file="Data_selfing_relative_homozygosity.csv")
 
 write.csv(Additive_load_stat_cloning, file="Data_cloning_additive_load.csv")
 write.csv(Recessive_load_stat_cloning, file="Data_cloning_recessive_load.csv")
+write.csv(Relative_homozygosity_stat_cloning, file="Data_cloning_relative_homozygosity.csv")
+
+## Also save raw data
+
+write.csv(Additive_load_selfing, file="Data_selfing_additive_load_raw.csv")
+write.csv(Recessive_load_selfing, file="Data_selfing_recessive_load_raw.csv")
+write.csv(Relative_homozygosity_selfing, file="Data_selfing_relative_homozygosity_raw.csv")
+
+write.csv(Additive_load_cloning, file="Data_cloning_additive_load_raw.csv")
+write.csv(Recessive_load_cloning, file="Data_cloning_recessive_load_raw.csv")
+write.csv(Relative_homozygosity_cloning, file="Data_cloning_relative_homozygosity_raw.csv")

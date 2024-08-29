@@ -8,14 +8,12 @@ replicate_number=100
 GC_recessive_load <- read.csv("Data_GC_recessive_load_vXII_full_60000.csv")
 GC_additive_load <- read.csv("Data_GC_additive_load_vXII_full_60000.csv")
 GC_relative_homozygosity <- read.csv("Data_GC_relative_homozygosity_vXII_full_60000.csv")
-#GC_fixed_mutations <- read.csv("Data_GC_fixed_mutations_vXII_full_60000.csv")
 
 for (h_coefficient in c(0.2)) {
 
 filename_rec_GC <- GC_recessive_load %>% filter(Dominance_coefficient == h_coefficient)
 filename_add_GC <- GC_additive_load %>% filter(Dominance_coefficient == h_coefficient)
 filename_rel_GC <- GC_relative_homozygosity %>% filter(Dominance_coefficient == h_coefficient)
-#filename_fix_GC <- GC_fixed_mutations %>% filter(Dominance_coefficient == h_coefficient)
 
 GC_rec_max <- filename_rec_GC$Expected_recessive_load+1.96*filename_rec_GC$SD_recessive_load/sqrt(replicate_number)
 GC_rec_min <- filename_rec_GC$Expected_recessive_load-1.96*filename_rec_GC$SD_recessive_load/sqrt(replicate_number)

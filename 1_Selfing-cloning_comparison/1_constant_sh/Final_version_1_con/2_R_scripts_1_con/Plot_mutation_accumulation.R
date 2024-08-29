@@ -9,19 +9,16 @@ colours <- c("Selfing"="darkolivegreen2","Asexuality"="darkolivegreen")
 Selfing_recessive_load_all <- read.csv("Data_selfing_recessive_load_full_60000.csv")
 Selfing_additive_load_all <- read.csv("Data_selfing_additive_load_full_60000.csv")
 Selfing_relative_homozygosity_all <- read.csv("Data_selfing_relative_homozygosity_full_60000.csv")
-#Selfing_fixed_mutations_all <- read.csv("Data_selfing_fixed_mutations_full_60000.csv")
 
 Cloning_recessive_load_all <- read.csv("Data_cloning_recessive_load_full_60000.csv")
 Cloning_additive_load_all <- read.csv("Data_cloning_additive_load_full_60000.csv")
 Cloning_relative_homozygosity_all <- read.csv("Data_cloning_relative_homozygosity_full_60000.csv")
-#Cloning_fixed_mutations_all <- read.csv("Data_cloning_fixed_mutations_full_60000.csv")
 
 for (h_coefficient in c(0.2)) {
 
 filename_rec_selfing <- Selfing_recessive_load_all %>% filter(Dominance_coefficient == h_coefficient)
 filename_add_selfing <- Selfing_additive_load_all %>% filter(Dominance_coefficient == h_coefficient)
 filename_rel_selfing <- Selfing_relative_homozygosity_all %>% filter(Dominance_coefficient == h_coefficient)
-#filename_fix_selfing <- Selfing_fixed_mutations_all %>% filter(Dominance_coefficient == h_coefficient)
 
 Selfing_rec_max <- filename_rec_selfing$Expected_recessive_load+1.96*filename_rec_selfing$SD_recessive_load/sqrt(replicate_number)
 Selfing_rec_min <- filename_rec_selfing$Expected_recessive_load-1.96*filename_rec_selfing$SD_recessive_load/sqrt(replicate_number)
@@ -36,7 +33,6 @@ Selfing_rel_min <- filename_rel_selfing$Expected_relative_homozygosity-1.96*file
 filename_rec_cloning <- Cloning_recessive_load_all %>% filter(Dominance_coefficient == h_coefficient)
 filename_add_cloning <- Cloning_additive_load_all %>% filter(Dominance_coefficient == h_coefficient)
 filename_rel_cloning <- Cloning_relative_homozygosity_all %>% filter(Dominance_coefficient == h_coefficient)
-#filename_fix_cloning <- Cloning_fixed_mutations_all %>% filter(Dominance_coefficient == h_coefficient)
 
 
 Cloning_rec_max <- filename_rec_cloning$Expected_recessive_load+1.96*filename_rec_cloning$SD_recessive_load/sqrt(replicate_number)

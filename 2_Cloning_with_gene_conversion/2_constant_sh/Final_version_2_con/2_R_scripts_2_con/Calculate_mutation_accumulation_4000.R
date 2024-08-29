@@ -17,20 +17,8 @@ N_lambda_values = length(lambda_values)
 
 N_replicates = 100
 
-#Fixed_mutations_list_GC <- list.files(pattern="X_Fixed_mutations*")
 Segregating_mutations_list_GC <-list.files(pattern="X_Sampled_individuals*")
 
-#print(gamma_values)
-#print(Fixed_mutations_list_GC)
-
-### Extracting the number of fixed mutations from files to vectors
-#N_fixed_mutations_GC <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_gamma_values)
-
-#i_c=0
-#for (x in Fixed_mutations_list_GC){
-#	i_c = i_c + 1
-#	file_c <- read.csv(x, skip=1) 
-#	N_fixed_mutations_GC[i_c] <- nrow(file_c)}
 	
 ### Extracting the number of segregeting mutations from files to vectors
 
@@ -66,17 +54,11 @@ GC_rate <- rep(rep(gamma_values, each=N_lambda_values*N_replicates), times = N_s
 Mean_tract_length <- rep(rep(lambda_values, each=N_replicates), times = N_gamma_values*N_s_values*N_h_values)
 Replicate <- rep(c(1:N_replicates), times = N_gamma_values*N_lambda_values*N_s_values*N_h_values)
 
-#Fixed_mutations_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, Replicate, N_fixed_mutations_GC)
-
 Recessive_load_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, Replicate, N_seg_homo_genotypes_GC)
 Additive_load_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, Replicate, N_segregating_mutations_GC)
 Relative_homozygosity_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, Replicate, Relative_homo_GC)
 
 ### Summarize and save data into files
-
-#Fixed_mutations_stat_GC <- Fixed_mutations_GC %>%
-#	group_by(Selection_coefficient, Dominance_coefficient, GC_rate) %>%
-#	summarise(Expected_N_fixed_mutations=mean(N_fixed_mutations_GC), SD_N_fixed_mutations=sd(N_fixed_mutations_GC), .groups = "rowwise")
 
 Recessive_load_stat_GC <- Recessive_load_GC %>%
 	group_by(Selection_coefficient, Dominance_coefficient, GC_rate) %>%
@@ -92,7 +74,6 @@ Relative_homozygosity_stat_GC <- Relative_homozygosity_GC %>%
 	
 setwd("../")
 
-#write.csv(Fixed_mutations_stat_GC, file="Data_GC_fixed_mutations_vXII_full_60000.csv")
 write.csv(Additive_load_stat_GC, file="Data_GC_additive_load_vXII_full_60000.csv")
 write.csv(Recessive_load_stat_GC, file="Data_GC_recessive_load_vXII_full_60000.csv")
 write.csv(Relative_homozygosity_stat_GC, file="Data_GC_relative_homozygosity_vXII_full_60000.csv")

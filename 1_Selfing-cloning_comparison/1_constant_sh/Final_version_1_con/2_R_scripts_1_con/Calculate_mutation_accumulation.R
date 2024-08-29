@@ -15,31 +15,12 @@ N_s_values = length(s_values)
 
 N_replicates = 100
 
-#Fixed_mutations_list <- list.files(pattern="X_Fixed_mutations*")
 Segregating_mutations_list <-list.files(pattern="X_Sampled_individuals*")
 
-#Fixed_mutations_list_selfing <- Fixed_mutations_list[grepl("selfing", Fixed_mutations_list)]
 Segregating_mutations_list_selfing <- Segregating_mutations_list[grepl("selfing", Segregating_mutations_list)]
 
-#Fixed_mutations_list_cloning <- Fixed_mutations_list[grepl("cloning", Fixed_mutations_list)]
 Segregating_mutations_list_cloning <- Segregating_mutations_list[grepl("cloning", Segregating_mutations_list)]
 
-### Extracting the number of fixed mutations from files to vectors
-#N_fixed_mutations_selfing <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_uniparenting_rates)
-#N_fixed_mutations_cloning <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_uniparenting_rates)
-
-#i_s = 0
-#for (x in Fixed_mutations_list_selfing){
-#	i_s = i_s + 1
-#	file_s <- read.csv(x, skip=1) 
-#	N_fixed_mutations_selfing[i_s] <- nrow(file_s)}
-
-#i_c=0
-#for (x in Fixed_mutations_list_cloning){
-#	i_c = i_c + 1
-#	file_c <- read.csv(x, skip=1) 
-#	N_fixed_mutations_cloning[i_c] <- nrow(file_c)}
-	
 ### Extracting the number of segregeting mutations from files to vectors
 
 N_seg_homo_genotypes_selfing <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_uniparenting_rates)
@@ -99,9 +80,6 @@ Dominance_coefficient <- rep(rep(h_values, each = N_uniparenting_rates*N_replica
 Uniparenting_rate <- rep(rep(Uniparenting_rates, each=N_replicates), times = N_s_values*N_h_values)
 Replicate <- rep(c(1:N_replicates), times = N_uniparenting_rates*N_s_values*N_h_values)
 
-#Fixed_mutations_selfing <- data.frame(Selection_coefficient, Dominance_coefficient, Uniparenting_rate, Replicate, N_fixed_mutations_selfing)
-#Fixed_mutations_cloning <- data.frame(Selection_coefficient, Dominance_coefficient, Uniparenting_rate, Replicate, N_fixed_mutations_cloning)
- 
 Recessive_load_selfing <- data.frame(Selection_coefficient, Dominance_coefficient, Uniparenting_rate, Replicate, N_seg_homo_genotypes_selfing)
 Additive_load_selfing <- data.frame(Selection_coefficient, Dominance_coefficient, Uniparenting_rate, Replicate, N_segregating_mutations_selfing)
 Relative_homozygosity_selfing <- data.frame(Selection_coefficient, Dominance_coefficient, Uniparenting_rate, Replicate, Relative_homo_selfing)
@@ -112,10 +90,6 @@ Relative_homozygosity_cloning <- data.frame(Selection_coefficient, Dominance_coe
 
 ### Summarize and save data into files
 ## Selfing
-
-#Fixed_mutations_stat_selfing <- Fixed_mutations_selfing %>%
-#	group_by(Selection_coefficient, Dominance_coefficient, Uniparenting_rate) %>%
-#	summarise(Expected_N_fixed_mutations=mean(N_fixed_mutations_selfing), SD_N_fixed_mutations=sd(N_fixed_mutations_selfing), .groups = "rowwise")
 
 Recessive_load_stat_selfing <- Recessive_load_selfing %>%
 	group_by(Selection_coefficient, Dominance_coefficient, Uniparenting_rate) %>%
@@ -131,10 +105,6 @@ Relative_homozygosity_stat_selfing <- Relative_homozygosity_selfing %>%
 	
 ## Cloning
 
-#Fixed_mutations_stat_cloning <- Fixed_mutations_cloning %>%
-#	group_by(Selection_coefficient, Dominance_coefficient, Uniparenting_rate) %>%
-#	summarise(Expected_N_fixed_mutations=mean(N_fixed_mutations_cloning), SD_N_fixed_mutations=sd(N_fixed_mutations_cloning), .groups = "rowwise")
-
 Recessive_load_stat_cloning <- Recessive_load_cloning %>%
 	group_by(Selection_coefficient, Dominance_coefficient, Uniparenting_rate) %>%
 	summarise(Expected_recessive_load=mean(N_seg_homo_genotypes_cloning), SD_recessive_load=sd(N_seg_homo_genotypes_cloning), .groups = "rowwise")
@@ -149,24 +119,20 @@ Relative_homozygosity_stat_cloning <- Relative_homozygosity_cloning %>%
 
 setwd("../")
 
-#write.csv(Fixed_mutations_stat_selfing, file="Data_selfing_fixed_mutations_full_60000.csv")
 write.csv(Additive_load_stat_selfing, file="Data_selfing_additive_load_full_60000.csv")
 write.csv(Recessive_load_stat_selfing, file="Data_selfing_recessive_load_full_60000.csv")
 write.csv(Relative_homozygosity_stat_selfing, file="Data_selfing_relative_homozygosity_full_60000.csv")
 
-#write.csv(Fixed_mutations_stat_cloning, file="Data_cloning_fixed_mutations_full_60000.csv")
 write.csv(Additive_load_stat_cloning, file="Data_cloning_additive_load_full_60000.csv")
 write.csv(Recessive_load_stat_cloning, file="Data_cloning_recessive_load_full_60000.csv")
 write.csv(Relative_homozygosity_stat_cloning, file="Data_cloning_relative_homozygosity_full_60000.csv")
 
 ## Also save raw data
 
-#write.csv(Fixed_mutations_selfing, file="Data_selfing_fixed_mutations_full_60000_raw.csv")
 write.csv(Additive_load_selfing, file="Data_selfing_additive_load_full_60000_raw.csv")
 write.csv(Recessive_load_selfing, file="Data_selfing_recessive_load_full_60000_raw.csv")
 write.csv(Relative_homozygosity_selfing, file="Data_selfing_relative_homozygosity_full_60000_raw.csv")
 
-#write.csv(Fixed_mutations_cloning, file="Data_cloning_fixed_mutations_full_60000_raw.csv")
 write.csv(Additive_load_cloning, file="Data_cloning_additive_load_full_60000_raw.csv")
 write.csv(Recessive_load_cloning, file="Data_cloning_recessive_load_full_60000_raw.csv")
 write.csv(Relative_homozygosity_cloning, file="Data_cloning_relative_homozygosity_full_60000_raw.csv")

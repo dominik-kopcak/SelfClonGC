@@ -1,4 +1,4 @@
-<center> <h1> How do self-fertilising with facultative sexual populations differ in mutation accumulation? </h1> </center>
+<center> <h1> How do self-fertilising and facultative sexual populations differ in mutation accumulation? </h1> </center>
 
 This repo contains simulation data, SLiM and R code as a supplement to the paper.
 

@@ -25,109 +25,110 @@ GC_rel_min <- filename_rel_GC$Expected_relative_homozygosity-1.96*filename_rel_G
 
 Plot_recessive <- ggplot()+
  
- 	geom_point(data=filename_rec_GC, aes(x=GC_rate, y=Expected_recessive_load), size=3, shape=15)+
+ 	geom_point(data=filename_rec_GC, aes(x=GC_rate*1000, y=Expected_recessive_load), size=3, shape=15)+
 	geom_linerange(data=filename_rec_GC, 
-			aes(x=GC_rate, 
+			aes(x=GC_rate*1000, 
 			    ymax=GC_rec_max, 
 			    ymin=GC_rec_min), size=1)+
 	
-	labs(x="Rate of gene conversion",
+	labs(x=expression("Mean GC rate per site (" %*% "4 )"),
 	     y="Homozygous genotypes",
-	     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp,\nnumber of replicates = ", replicate_number,", sample size = 50, run for 60 000 generations", sep=""))+
+	     caption=paste("variable s,h, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp,\nnumber of replicates = ", replicate_number,", sample size = 50, run for 60 000 generations", sep=""))+
 	
-	theme(panel.grid.major=element_blank(),
+	 theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),
     	      panel.background=element_blank(),
     	      axis.line = element_line(color="black"),
     	      
-	      plot.caption=element_text(size=10, hjust=0.5),
-	      plot.subtitle=element_text(size=15, hjust=1, face="bold"), 
-	      axis.title.y=element_text(size=15),
-	      axis.title.x=element_text(size=15),
+	      plot.caption=element_text(size=20, hjust=0.5),
+	      axis.title.y=element_text(size=30),
+	      axis.title.x=element_text(size=30),
 	      
-	      axis.text.x=element_text(size=15),
-	      axis.text.y=element_text(size=15),
-	      
-	      legend.position=c(0.12, 0.8),
-	      legend.key = element_rect(fill = "white"))+
-
-	scale_y_continuous(limits=c(-2, 3500))+
-	
-	scale_x_log10(breaks=c(10**(seq(-5, -11, -1))),
-                labels = trans_format("log10", math_format(10^.x)))
-		   
-Plot_additive <- ggplot()+
-	
-	geom_point(data=filename_add_GC, aes(x=GC_rate, y=Expected_additive_load/1000), size=3, shape=15)+
-	geom_linerange(data=filename_add_GC, 
-			aes(x=GC_rate, 
-			    ymax=GC_add_max/1000, 
-			    ymin=GC_add_min/1000), size=1)+
-	
-	labs(x="Rate of gene conversion",
-	     y="Total mutation count\n(x 1000)",
-	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC")+
-      
-     	 theme(panel.grid.major=element_blank(),
-    	      panel.grid.minor=element_blank(),
-    	      panel.background=element_blank(),
-    	      axis.line = element_line(color="black"),
-    	      
-    	      plot.title=element_text(size=20, hjust=0.5, face="bold"),
-	      plot.subtitle=element_text(size=15, hjust=1, face="bold"),
-	      axis.title.y=element_text(size=15),
-	      axis.title.x=element_blank(),
-	      
-	      axis.text.x=element_text(size=0),
-	      axis.text.y=element_text(size=15),
+	      axis.text.x=element_text(size=35),
+	      axis.text.y=element_text(size=35),
 	      
 	      legend.position="none")+
 
-  	scale_x_log10(labels = trans_format("log10"))
-  	
-Plot_relative <- ggplot()+
- 
- 	geom_point(data=filename_rel_GC, aes(x=GC_rate, y=Expected_relative_homozygosity), size=3, shape=15)+
-	geom_linerange(data=filename_rel_GC, 
-			aes(x=GC_rate, 
-			    ymax=GC_rel_max, 
-			    ymin=GC_rel_min), size=1)+
+	scale_y_continuous(limits=c(-2, 3500))+
 	
-	labs(x="Rate of gene conversion",
-	     y="Relative homozygosity",
-	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC",
-	     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp,\nnumber of replicates = ", replicate_number,", sample size = 50, run for 60 000 generations", sep=""))+
+	 scale_x_log10(breaks = c(10**seq(-8, -2, 1)),
+                     labels = trans_format("log10", math_format(10^.x)))
+		   
+Plot_additive <- ggplot()+
 	
+	geom_point(data=filename_add_GC, aes(x=GC_rate*1000, y=Expected_additive_load/1000), size=3, shape=15)+
+	geom_linerange(data=filename_add_GC, 
+			aes(x=GC_rate*1000, 
+			    ymax=GC_add_max/1000, 
+			    ymin=GC_add_min/1000), size=1)+
+	
+	labs(x=expression("Mean GC rate per site (" %*% "4 )"),
+	     y="Total mutation count\n(x 1000)",
+	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC")+
+      
 	theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),
     	      panel.background=element_blank(),
     	      axis.line = element_line(color="black"),
     	      
-    	      plot.title=element_text(size=20, hjust=0.5, face="bold"),
-	      plot.caption=element_text(size=10, hjust=0.5),
-	      plot.subtitle=element_text(size=15, hjust=1, face="bold"), 
-	      axis.title.y=element_text(size=15),
-	      axis.title.x=element_text(size=15),
+
+	      plot.title=element_text(size=40, hjust=0.5, face="bold"),
+	      axis.title.y=element_text(size=30),
+	      axis.title.x=element_blank(),
 	      
-	      axis.text.x=element_text(size=15),
-	      axis.text.y=element_text(size=15),
+	      axis.text.x=element_blank(),
+	      axis.text.y=element_text(size=35),
+
+	      legend.background=element_rect(colour="black"))+
+
+ 	  scale_x_log10(breaks = c(10**seq(-8, -2, 1)),
+                     labels = trans_format("log10", math_format(10^.x)))
+  	
+Plot_relative <- ggplot()+
+ 
+ 	geom_point(data=filename_rel_GC, aes(x=GC_rate*1000, y=Expected_relative_homozygosity), size=3, shape=15)+
+	geom_linerange(data=filename_rel_GC, 
+			aes(x=GC_rate*1000, 
+			    ymax=GC_rel_max, 
+			    ymin=GC_rel_min), size=1)+
+	
+	labs( x=expression("Mean GC rate per site (" %*% "4 )"),
+	     y="Relative homozygosity",
+	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC",
+	     caption=paste("variable s,h, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp,\nnumber of replicates = ", replicate_number,", sample size = 50, run for 60 000 generations", sep=""))+
+	
+	 theme(panel.grid.major=element_blank(),
+    	      panel.grid.minor=element_blank(),
+    	      panel.background=element_blank(),
+    	      axis.line = element_line(color="black"),
+    	      
+    	      plot.title=element_text(size=40, hjust=0.5, face="bold"),
+	      plot.caption=element_text(size=20, hjust=0.5),
+	      axis.title.y=element_text(size=35),
+	      axis.title.x=element_text(size=35),
 	      
-	      legend.position=c(0.12, 0.8),
-	      legend.key = element_rect(fill = "white"))+
+	      axis.text.x=element_text(size=35),
+	      axis.text.y=element_text(size=35),
+	      
+	      legend.position="none")+
 
 	scale_y_continuous(limits=c(-0.01, 1))+
 	
-	scale_x_log10(breaks=c(10**(seq(-5, -11, -1))),
-                labels = trans_format("log10", math_format(10^.x)))
+	 scale_x_log10(breaks = c(10**seq(-8, -2, 1)),
+                     labels = trans_format("log10", math_format(10^.x)))
 	
 Plot <- Plot_additive/Plot_recessive
 
 plot_name <- paste("Figure_Mutation_accumulation_nonconstant_sh.png",sep="")
 ggsave(filename=plot_name,
 	plot=Plot,
-	dpi=600)
+	dpi = 300,
+	width=12,
+	height=12)
 	
 plot_name_rel <- paste("Figure_Mutation_accumulation_relative_homozygosity_nonconstant_sh.png",sep="")
 ggsave(filename=plot_name_rel,
 	plot=Plot_relative,
-	dpi=400)
+	dpi = 300,
+	width=12,
+	height=12)

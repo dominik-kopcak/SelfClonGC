@@ -44,66 +44,72 @@ for (h_coefficient in h_values){
 	  	   
 	 Plot_mean_GC <- Plot_mean_GC +
 		scale_colour_viridis_d(guide = "none") + 
-		scale_fill_viridis_d() +
+		scale_fill_viridis_d(labels=c(expression(4 %*% 10 ^ -2), expression(4 %*% 10 ^ -3), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -5), 
+				      expression(4 %*% 10 ^ -6), expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -8))) +
 		labs(title="Population Fitness\nUnder Asexual Reproduction with GC",
 		     x="Time",
 		     y="Mean fitness",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp,\nnumber of replicates = 100, sample size = 50, run for 20 000 generations, mean tract length = 4 000 bp", sep=""))+
-		guides(fill = guide_legend(title = "GC rate")) +
+		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, number of replicates = 100\nsample size = 50, run for 20 000 generations, mean GC tract length = 4 000 bp", sep=""))+
+		guides(fill = guide_legend(title = "Mean GC rate\nper site")) +
 	     
 		theme(panel.grid.major=element_blank(),
     	           panel.grid.minor=element_blank(),
     	  	   panel.background=element_blank(),
     	   	   axis.line = element_line(color="black"),
     	   	   
-    	   	   plot.title=element_text(size=20, hjust=0.5, face="bold"),
-	  	   plot.caption=element_text(size=10, hjust=0.5),
-	   	   plot.subtitle=element_text(size=15, hjust=1, face="bold"), 
-	   	   
-	   	   axis.title.y=element_text(size=15),
-	    	   axis.title.x=element_text(size=15),
+	    	   plot.title=element_text(size=40, hjust=0.5, face="bold"),
+	    	   plot.caption=element_text(size=20, hjust=0.5),
+	    	   axis.title.y=element_text(size=35),
+	    	   axis.title.x=element_text(size=35),
 	      
-	    	   axis.text.x=element_text(size=15),
-	    	   axis.text.y=element_text(size=15),
+	    	   axis.text.x=element_text(size=35),
+	    	   axis.text.y=element_text(size=35),
 	    	   
 	    	   legend.key = element_blank(),
-	    	   legend.key.size = unit(1, "cm"))
+	    	   legend.title = element_text(size=20),
+	    	   legend.text = element_text(size=20),
+	    	   legend.key.size = unit(1.5, "cm"))
 	    	   
 	  Plot_variance_GC <- Plot_variance_GC +
 		scale_colour_viridis_d(guide = "none") + 
-		scale_fill_viridis_d() +  
+		scale_fill_viridis_d(labels=c(expression(4 %*% 10 ^ -2), expression(4 %*% 10 ^ -3), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -5), 
+				      expression(4 %*% 10 ^ -6), expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -8))) + 
 		labs(title="Population Fitness Variance\nUnder Asexual Reproduction with GC",
 		     x="Time",
 		     y="Fitness variance",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp,\nnumber of replicates = 100, sample size = 50, run for 60 000 generations, mean tract length = 4 000 bp", sep=""))+
-		guides(fill = guide_legend(title = "GC rate")) +
+		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, number of replicates = 100\nsample size = 50, run for 60 000 generations, mean GC tract length = 4 000 bp", sep=""))+
+		guides(fill = guide_legend(title = "Mean GC rate\nper site")) +
 	     
 		theme(panel.grid.major=element_blank(),
     	           panel.grid.minor=element_blank(),
     	  	   panel.background=element_blank(),
     	   	   axis.line = element_line(color="black"),
     	   	   
-	  	   plot.title=element_text(size=20, hjust=0.5, face="bold"),
-	  	   plot.caption=element_text(size=10, hjust=0.5),
-	   	   plot.subtitle=element_text(size=15, hjust=1, face="bold"), 
-	   	   
-	   	   axis.title.y=element_text(size=15),
-	    	   axis.title.x=element_text(size=15),
+	    	   plot.title=element_text(size=40, hjust=0.5, face="bold"),
+	    	   plot.caption=element_text(size=20, hjust=0.5),
+	    	   axis.title.y=element_text(size=35),
+	    	   axis.title.x=element_text(size=35),
 	      
-	    	   axis.text.x=element_text(size=15),
-	    	   axis.text.y=element_text(size=15),
+	    	   axis.text.x=element_text(size=35),
+	    	   axis.text.y=element_text(size=35),
 	    	   
 	    	   legend.key = element_blank(),
-	    	   legend.key.size = unit(1, "cm"))
+	    	   legend.title = element_text(size=20),
+	    	   legend.text = element_text(size=20),
+	    	   legend.key.size = unit(1.5, "cm"))
 
 
 plot_mean_GC_name <- paste("Figure_mean_fitness_GC_", h_coefficient, "_vXII_full_60.png", sep="")
 ggsave(filename = plot_mean_GC_name,
 	plot = Plot_mean_GC,
-	dpi = 600)
+	dpi = 300,
+	width = 14,
+	height = 12)
 
 plot_variance_GC_name <- paste("Figure_variance_fitness_GC_", h_coefficient, "_vXII_full_60.png", sep="")
 ggsave(filename = plot_variance_GC_name,
 	plot = Plot_variance_GC,
-	dpi = 600)
+	dpi = 300,
+	width = 14,
+	height = 12)
 }

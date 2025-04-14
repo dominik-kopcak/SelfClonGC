@@ -9,16 +9,19 @@ colours <- c("Selfing"="darkolivegreen2","Asexuality"="darkolivegreen")
 Selfing_recessive_load_all <- read.csv("Data_selfing_recessive_load_full_60000.csv")
 Selfing_additive_load_all <- read.csv("Data_selfing_additive_load_full_60000.csv")
 Selfing_relative_homozygosity_all <- read.csv("Data_selfing_relative_homozygosity_full_60000.csv")
+#Selfing_fixed_mutations_all <- read.csv("Data_selfing_fixed_mutations_full_60000.csv")
 
 Cloning_recessive_load_all <- read.csv("Data_cloning_recessive_load_full_60000.csv")
 Cloning_additive_load_all <- read.csv("Data_cloning_additive_load_full_60000.csv")
 Cloning_relative_homozygosity_all <- read.csv("Data_cloning_relative_homozygosity_full_60000.csv")
+#Cloning_fixed_mutations_all <- read.csv("Data_cloning_fixed_mutations_full_60000.csv")
 
 for (h_coefficient in c(0.2)) {
 
 filename_rec_selfing <- Selfing_recessive_load_all %>% filter(Dominance_coefficient == h_coefficient)
 filename_add_selfing <- Selfing_additive_load_all %>% filter(Dominance_coefficient == h_coefficient)
 filename_rel_selfing <- Selfing_relative_homozygosity_all %>% filter(Dominance_coefficient == h_coefficient)
+#filename_fix_selfing <- Selfing_fixed_mutations_all %>% filter(Dominance_coefficient == h_coefficient)
 
 Selfing_rec_max <- filename_rec_selfing$Expected_recessive_load+1.96*filename_rec_selfing$SD_recessive_load/sqrt(replicate_number)
 Selfing_rec_min <- filename_rec_selfing$Expected_recessive_load-1.96*filename_rec_selfing$SD_recessive_load/sqrt(replicate_number)
@@ -33,6 +36,7 @@ Selfing_rel_min <- filename_rel_selfing$Expected_relative_homozygosity-1.96*file
 filename_rec_cloning <- Cloning_recessive_load_all %>% filter(Dominance_coefficient == h_coefficient)
 filename_add_cloning <- Cloning_additive_load_all %>% filter(Dominance_coefficient == h_coefficient)
 filename_rel_cloning <- Cloning_relative_homozygosity_all %>% filter(Dominance_coefficient == h_coefficient)
+#filename_fix_cloning <- Cloning_fixed_mutations_all %>% filter(Dominance_coefficient == h_coefficient)
 
 
 Cloning_rec_max <- filename_rec_cloning$Expected_recessive_load+1.96*filename_rec_cloning$SD_recessive_load/sqrt(replicate_number)
@@ -82,7 +86,7 @@ Plot_recessive <- ggplot()+
 	guides(colour = guide_legend(override.aes = list(size = 8)))+
 		
 	scale_colour_manual(values = colours)+
-	scale_x_continuous(breaks=seq(0, 1, 0.2))
+	scale_x_continuous(breaks=c(0.9, seq(0, 1, 0.2)))
 		   
 Plot_additive <- ggplot()+
 	geom_point(data=filename_add_selfing, aes(x=Uniparenting_rate, y=Expected_additive_load/1000), colour="darkolivegreen2", size=3, shape=15)+
@@ -116,7 +120,7 @@ Plot_additive <- ggplot()+
 	guides(colour = guide_legend(override.aes = list(size = 8)))+
 		
 	scale_colour_manual(values = colours)+
-	scale_x_continuous(breaks=seq(0, 1, 0.2))
+	scale_x_continuous(breaks=c(0.9, seq(0, 1, 0.2)))
 
 Plot_additive_2 <- ggplot()+
 	geom_point(data=filename_add_selfing, aes(x=Uniparenting_rate, y=Expected_additive_load/1000), colour="darkolivegreen2", size=3, shape=15)+
@@ -151,7 +155,7 @@ Plot_additive_2 <- ggplot()+
 	guides(colour = guide_legend(override.aes = list(size = 8)))+
 		
 	scale_colour_manual(values = colours)+
-	scale_x_continuous(breaks=seq(0, 1, 0.2))+
+	scale_x_continuous(breaks=c(0.9, seq(0, 1, 0.2)))+
 	scale_y_continuous(limits=c(0, 5))
 	
 Plot_additive_log <- ggplot()+
@@ -187,7 +191,7 @@ Plot_additive_log <- ggplot()+
 	guides(colour = guide_legend(override.aes = list(size = 8)))+
 		
 	scale_colour_manual(values = colours)+
-	scale_x_continuous(breaks=seq(0, 1, 0.2))+
+	scale_x_continuous(breaks=c(0.9, seq(0, 1, 0.2)))+
 	scale_y_log10(breaks = 10**c(3,4,5),
                 labels = trans_format("log10", math_format(10^.x)))
 
@@ -232,7 +236,7 @@ Plot_relative <- ggplot()+
 	guides(colour = guide_legend(override.aes = list(size = 8)))+
 		
 	scale_colour_manual(values = colours)+
-	scale_x_continuous(breaks=seq(0, 1, 0.2))
+	scale_x_continuous(breaks=c(0.9, seq(0, 1, 0.2)))
 
 
 

@@ -79,7 +79,7 @@ Plot_recessive <- ggplot()+
 	guides(colour = guide_legend(override.aes = list(size = 8)))+
 	      
 	scale_colour_manual(values = colours)+
-	scale_x_continuous(breaks=seq(0, 1, 0.2))
+	scale_x_continuous(breaks=c(0.9, seq(0, 1, 0.2)))
 	
 Plot_additive <- ggplot()+
 	geom_point(data=filename_add_selfing, aes(x=Uniparenting_rate, y=Expected_additive_load/1000), color = "darkolivegreen2", size=3, shape=15)+
@@ -117,7 +117,7 @@ Plot_additive <- ggplot()+
 	      legend.position="none")+
       
 	scale_colour_manual(values = colours)+
-	scale_x_continuous(breaks=seq(0, 1, 0.2))
+	scale_x_continuous(breaks=c(0.9, seq(0, 1, 0.2)))
                 
 		   
 Plot_additive_2 <- ggplot()+
@@ -156,7 +156,7 @@ Plot_additive_2 <- ggplot()+
 	      legend.position="none")+
       
 	scale_colour_manual(values = colours)+
-	scale_x_continuous(breaks=seq(0, 1, 0.2))+	
+	scale_x_continuous(breaks=c(0.9, seq(0, 1, 0.2)))+	
 	scale_y_log10(breaks = 10**c(4,5),
                 labels = trans_format("log10", math_format(10^.x)))
                 
@@ -201,7 +201,7 @@ Plot_relative <- ggplot()+
 	guides(colour = guide_legend(override.aes = list(size = 8)))+
 	      
 	scale_colour_manual(values = colours)+
-	scale_x_continuous(breaks=seq(0, 1, 0.2))
+	scale_x_continuous(breaks=c(0.9, seq(0, 1, 0.2)))
 
 Plot <- Plot_additive/Plot_recessive
 Plot_2 <- Plot_additive_2/Plot_recessive

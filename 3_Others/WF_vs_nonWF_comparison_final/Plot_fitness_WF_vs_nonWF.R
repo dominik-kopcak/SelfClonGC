@@ -8,10 +8,8 @@ Max_time=60000
 N_replicates = 100
 colours <- c("Complete cloning"="red","Complete cloning + Mean GC rate per site 1E-09"="#45D8FB", "Complete cloning + Mean GC rate per site 1E-10"="#04C6F5", "Complete cloning + Mean GC rate per site 1E-11"="#038AEF")
 
-# ADJUST PATHS AS NEEDED
-
-Fitness_cloning <- read.csv("Data_fitness_evolution_cloning_full_60000.csv")
-Fitness_cloning_GC <- read.csv("Data_fitness_evolution_GC_vXII_full_60_9-11.csv")
+Fitness_cloning <- read.csv("/home/dvojkvietok/Documents/SelfingCloningGC/1_Selfing-cloning_comparison/1_constant_sh/full_version_60/Data_fitness_evolution_cloning_full_60000.csv")
+Fitness_cloning_GC <- read.csv("/home/dvojkvietok/Documents/SelfingCloningGC/2_Cloning_with_gene_conversion/2_constant_sh/Model_december/Full_60000/Data_fitness_evolution_GC_vXII_full_60_9-11.csv")
 
 
 fitness_cloning <- Fitness_cloning %>%
@@ -80,7 +78,8 @@ Plot_mean_ <- Plot_mean_ +
    	  	   panel.background=element_blank(),
    	   	   axis.line = element_line(color="black"),
 	    	   
-	    	   plot.title=element_text(size=40, hjust=0.5, face="bold"),
+#	    	   plot.title=element_text(size=40, hjust=0.5, face="bold"),
+		   plot.title=element_blank(),
 	    	   plot.caption=element_text(size=20, hjust=0.5),
 	    	   axis.title.y=element_text(size=35),
 	    	   axis.title.x=element_text(size=35),
@@ -116,7 +115,8 @@ Plot_mean_ <- Plot_mean_ +
    	  	   panel.background=element_blank(),
     	   	   axis.line = element_line(color="black"),
     	   	   
-	    	   plot.title=element_text(size=40, hjust=0.5, face="bold"),
+#	    	   plot.title=element_text(size=40, hjust=0.5, face="bold"),
+		   plot.title=element_blank(),
 	    	   plot.caption=element_text(size=20, hjust=0.5),
 	    	   axis.title.y=element_text(size=35),
 	    	   axis.title.x=element_text(size=35),
@@ -137,12 +137,12 @@ plot_mean__name <- paste("Figure_mean_fitness_WF_cloning_vs_nonWF_GC_", h_coeffi
 ggsave(filename = plot_mean__name,
 	plot = Plot_mean_,
 	dpi = 300,
-	width = 14,
-	height = 12)
+	width = 16,
+	height = 16)
 
 plot_variance__name <- paste("Figure_variance_fitness_WF_cloning_vs_nonWF_GC_", h_coefficient, "_vXII_40000_60.png",sep="")
 ggsave(filename = plot_variance__name,
 	plot = Plot_variance_,
 	dpi = 300,
-	width = 14,
-	height = 12)
+	width = 16,
+	height = 16)

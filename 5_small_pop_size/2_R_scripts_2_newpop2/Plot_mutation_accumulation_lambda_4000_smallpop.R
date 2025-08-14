@@ -5,11 +5,11 @@ library(scales)
 
 replicate_number=20
 
-setwd("/mnt/loki/hartfield/AsexMuts/scripts/SelfClonGC/4_new_pop_size/4_plots/")
+setwd("/mnt/loki/hartfield/AsexMuts/scripts/SelfClonGC/5_small_pop_size/4_plots/")
 
-GC_recessive_load <- read.csv("Data_GC_recessive_load_vXII_full_60000_newpop.csv")
-GC_additive_load <- read.csv("Data_GC_additive_load_vXII_full_60000_newpop.csv")
-GC_relative_homozygosity <- read.csv("Data_GC_relative_homozygosity_vXII_full_60000_newpop.csv")
+GC_recessive_load <- read.csv("Data_GC_recessive_load_vXII_full_60000_smallpop.csv")
+GC_additive_load <- read.csv("Data_GC_additive_load_vXII_full_60000_smallpop.csv")
+GC_relative_homozygosity <- read.csv("Data_GC_relative_homozygosity_vXII_full_60000_smallpop.csv")
 
 for (h_coefficient in c(0.2)) {
 
@@ -25,8 +25,8 @@ print(GC_rec_max)
 GC_add_max <- filename_add_GC$Expected_additive_load+1.96*filename_add_GC$SD_additive_load/sqrt(replicate_number)
 GC_add_min <- filename_add_GC$Expected_additive_load-1.96*filename_add_GC$SD_additive_load/sqrt(replicate_number)
 
-GC_rel_max <- filename_rel_GC$Expected_relative_homozygosity+1.96*filename_rel_GC$SD_relative_homozygosity/sqrt(replicate_number)
-GC_rel_min <- filename_rel_GC$Expected_relative_homozygosity-1.96*filename_rel_GC$SD_relative_homozygosity/sqrt(replicate_number)
+GC_rel_max <- filename_rel_GC$SD_relative_homozygosity_max
+GC_rel_min <- filename_rel_GC$SD_relative_homozygosity_min
 
 Plot_recessive <- ggplot()+
  	geom_point(data=filename_rec_GC, aes(x=GC_rate*1000, y=Expected_recessive_load), size=3, shape=15)+
@@ -37,7 +37,7 @@ Plot_recessive <- ggplot()+
 	
 	labs(y="Homozygous genotypes",
 	     x=expression("Mean GC rate per site (" %*% "4 )"),
-	      caption=paste("s = 0.005, h = ", h_coefficient, ", mutation rate = 2E-9, population size = 10 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp\nnumber of replicates = 20, sample size = 50, run for 60 000 generations", sep=""))+
+	      caption=paste("s = 0.05, h = ", h_coefficient, ", mutation rate = 2E-8, population size = 1 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp\nnumber of replicates = 20, sample size = 50, run for 60 000 generations", sep=""))+
 	     
 	     
 	     
@@ -98,7 +98,7 @@ Plot_relative <- ggplot()+
 	labs(y="Relative homozygosity",
 	     x=expression("Mean GC rate per site (" %*% "4 )"),
 	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC",
-	     caption=paste("s = 0.005, h = ", h_coefficient, ", mutation rate = 2E-9, population size = 10 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp\nnumber of replicates = 20, sample size = 50, run for 60 000 generations", sep=""))+
+	     caption=paste("s = 0.05, h = ", h_coefficient, ", mutation rate = 2E-8, population size = 1 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp\nnumber of replicates = 20, sample size = 50, run for 60 000 generations", sep=""))+
 	     
 	 theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),
@@ -122,14 +122,14 @@ Plot_relative <- ggplot()+
   	
 Plot <- Plot_additive/Plot_recessive
 
-plot_name <- paste("Figure_Mutation_accumulation_GC_", h_coefficient, "_vXII_full_60000_newpop.png",sep="")
+plot_name <- paste("Figure_Mutation_accumulation_GC_", h_coefficient, "_vXII_full_60000_smallpop.png",sep="")
 ggsave(filename=plot_name,
 	plot=Plot,
 	dpi = 300,
 	width=12,
 	height=12)
 	
-plot_name_2 <- paste("Figure_Mutation_accumulation_GC_relative_homozygosity_", h_coefficient, "_vXII_full_60000_newpop.png",sep="")
+plot_name_2 <- paste("Figure_Mutation_accumulation_GC_relative_homozygosity_", h_coefficient, "_vXII_full_60000_smallpop.png",sep="")
 ggsave(filename=plot_name_2,
 	plot=Plot_relative,
 	dpi = 300,

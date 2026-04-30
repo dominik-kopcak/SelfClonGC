@@ -219,6 +219,13 @@ late() {
 	writeFile(GC_mean_file_name, paste(meanGC), append=T);
 	writeFile(GC_var_file_name, paste(varGC), append=T);
 	
+	if (sim.cycle < 10000 & sim.cycle % 1000 == 0) {		// Sample genotypes every 1000 for the first 10,000 generations
+		allIndividuals=sim.subpopulations.individuals;
+		sampledIndividuals=sample(allIndividuals, 50);
+		sampledIndividuals.genomes.outputVCF(filePath="Cycle_" + sim.cycle + "_" + File_path_i);
+		sim.outputFixedMutations(filePath="Cycle_" + sim.cycle + "_" + File_path_f);
+	}
+	
 	if (sim.cycle % 10000 == 0) {		// Sample genotypes every 10000 generations
 		allIndividuals=sim.subpopulations.individuals;
 		sampledIndividuals=sample(allIndividuals, 50);

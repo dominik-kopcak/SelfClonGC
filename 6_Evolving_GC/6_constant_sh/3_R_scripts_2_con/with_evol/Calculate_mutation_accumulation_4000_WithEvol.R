@@ -16,7 +16,13 @@ N_gamma_values = length(gamma_values)
 lambda_values = c(4000)
 N_lambda_values = length(lambda_values)
 
-cycles = seq(10000,60000,10000)
+gc_sd = c(10**c(-7,-8))
+N_gc_sd = length(gc_sd)
+
+cycles1 = seq(10000,60000,10000)
+cycles2 = seq(1000,9000,1000)
+cycles = c(cycles2,cycles1)
+cycles = cycles %>% as.character(.) %>% sort %>% as.numeric
 N_cycles = length(cycles)
 
 N_replicates = 20
@@ -26,9 +32,9 @@ Segregating_mutations_list_GC <- list.files(pattern="X_Sampled_individuals*")[gr
 	
 ### Extracting the number of segregeting mutations from files to vectors
 
-N_seg_homo_genotypes_GC <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_gamma_values*N_lambda_values*N_cycles)
-N_segregating_mutations_GC <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_gamma_values*N_lambda_values*N_cycles)
-Relative_homo_GC <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_gamma_values*N_lambda_values*N_cycles)
+N_seg_homo_genotypes_GC <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_gamma_values*N_lambda_values*N_gc_sd*N_cycles)
+N_segregating_mutations_GC <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_gamma_values*N_lambda_values*N_gc_sd*N_cycles)
+Relative_homo_GC <- rep(c(0), each=N_replicates*N_h_values*N_s_values*N_gamma_values*N_lambda_values*N_gc_sd*N_cycles)
 
 j_c = 0
 for (y in Segregating_mutations_list_GC){ 
@@ -52,30 +58,31 @@ for (y in Segregating_mutations_list_GC){
 
 # following the naming convetion of the SLiM output file
 
-Selection_coefficient <- rep(s_values, each = N_h_values*N_lambda_values*N_gamma_values*N_replicates*N_cycles)
-Dominance_coefficient <- rep(rep(h_values, each = N_gamma_values*N_lambda_values*N_replicates*N_cycles), times = N_s_values)
-GC_rate <- rep(rep(gamma_values, each=N_lambda_values*N_replicates), times = N_s_values*N_h_values* N_cycles)
-Mean_tract_length <- rep(rep(lambda_values, each=N_replicates*N_cycles), times = N_gamma_values*N_s_values*N_h_values)
-Cycle<- rep(cycles, each=N_replicates*N_gamma_values*N_s_values*N_h_values)
+Selection_coefficient <- rep(s_values, each = N_h_values*N_lambda_values*N_gamma_values* N_gc_sd*N_replicates*N_cycles)
+Dominance_coefficient <- rep(rep(h_values, each = N_gamma_values* N_gc_sd*N_lambda_values*N_replicates*N_cycles), times = N_s_values)
+GC_rate <- rep(rep(gamma_values, each=N_lambda_values*N_gc_sd*N_replicates), times = N_s_values*N_h_values* N_cycles)
+Mean_tract_length <- rep(rep(lambda_values, each=N_replicates*N_cycles), times = N_gamma_values*N_s_values*N_h_values*N_gc_sd)
+GC_var <- rep(rep(gc_sd, each=N_replicates), times = N_s_values*N_h_values*N_gamma_values*N_cycles)
+Cycle<- rep(cycles, each=N_replicates*N_gamma_values*N_s_values*N_h_values*N_gc_sd)
 rep_temp <- c(1:N_replicates) %>% as.character(.) %>% sort %>% as.numeric
-Replicate <- rep(rep_temp, times = N_gamma_values*N_lambda_values*N_s_values*N_h_values*N_cycles)
+Replicate <- rep(rep_temp, times = N_gamma_values*N_lambda_values*N_s_values*N_h_values*N_cycles*N_gc_sd)
 
-Recessive_load_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, Cycle, Replicate, N_seg_homo_genotypes_GC)
-Additive_load_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, Cycle, Replicate, N_segregating_mutations_GC)
-Relative_homozygosity_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, Cycle, Replicate, Relative_homo_GC)
+Recessive_load_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, GC_var, Cycle, Replicate, N_seg_homo_genotypes_GC)
+Additive_load_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, GC_var, Cycle, Replicate, N_segregating_mutations_GC)
+Relative_homozygosity_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, GC_var, Cycle, Replicate, Relative_homo_GC)
 
 ### Summarize and save data into files
 
 Recessive_load_stat_GC <- Recessive_load_GC %>%
-	group_by(Selection_coefficient, Dominance_coefficient, GC_rate, Cycle) %>%
+	group_by(Selection_coefficient, Dominance_coefficient, GC_rate, GC_var, Cycle) %>%
 	summarise(Expected_recessive_load=mean(N_seg_homo_genotypes_GC), SD_recessive_load=sd(N_seg_homo_genotypes_GC), .groups = "rowwise")
 
 Additive_load_stat_GC <- Additive_load_GC %>%
-	group_by(Selection_coefficient, Dominance_coefficient, GC_rate, Cycle) %>%
+	group_by(Selection_coefficient, Dominance_coefficient, GC_rate, GC_var, Cycle) %>%
 	summarise(Expected_additive_load=mean(N_segregating_mutations_GC), SD_additive_load=sd(N_segregating_mutations_GC), .groups = "rowwise")
 
 Relative_homozygosity_stat_GC <- Relative_homozygosity_GC %>%
-	group_by(Selection_coefficient, Dominance_coefficient, GC_rate, Cycle) %>%
+	group_by(Selection_coefficient, Dominance_coefficient, GC_rate, GC_var, Cycle) %>%
 	summarise(Expected_relative_homozygosity=mean(Relative_homo_GC), SD_relative_homozygosity=sd(Relative_homo_GC), .groups = "rowwise")
 	
 setwd("/mnt/loki/hartfield/AsexMuts/scripts/SelfClonGC/6_Evolving_GC/6_constant_sh/4_Data_2_con")

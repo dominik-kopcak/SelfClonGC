@@ -94,7 +94,7 @@ Fitness_GC_stat <- Fitness_GC %>%
 	group_by(Selection_coefficient, Dominance_coefficient, GC_rate, GC_var, Time) %>%
 	summarize(Expected_mean_fitness = mean(Mean_fitness_GC), Expected_variance_fitness = mean(Variance_fitness_GC), Expected_GC = mean(Mean_GC),
 		  SD_mean_fitness = sd(Mean_fitness_GC), SD_variance_fitness = sd(Variance_fitness_GC), SD_GC = sd(Mean_GC), 
-		 CI_mean_fit = BSCI(Mean_fitness_GC,100), CI_var_fit = BSCI(Variance_fitness_GC,100), CI_GC = BSCI(Mean_GC,100),
+		 CI_mean_fit = BSCI(Mean_fitness_GC,1000), CI_var_fit = BSCI(Variance_fitness_GC,1000), CI_GC = BSCI(Mean_GC,1000),
 		  .groups = "rowwise") %>% separate(CI_mean_fit, into=c('CI_fit_L', 'CI_fit_U'), sep=',',convert=T) %>% separate(CI_var_fit, into=c('CI_var_L', 'CI_var_U'), sep=',',convert=T) %>% separate(CI_GC, into=c('CI_GC_L', 'CI_GC_U'), sep=',',convert=T)
 
 setwd("/mnt/loki/hartfield/AsexMuts/scripts/SelfClonGC/6_Evolving_GC/6_constant_sh/4_Data_2_con")

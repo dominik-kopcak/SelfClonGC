@@ -95,7 +95,7 @@ for (h_coefficient in h_values){
 	    	   legend.key.size = unit(1.5, "cm"))
 	  
 	  Plot_evol_GC <- Plot_evol_GC +
-#  	 	scale_y_log10() +
+  	 	scale_y_log10() +
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(breaks=unique(Fitness_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2))) +
 		labs(title="Evolving GC rate\nUnder Asexual Reproduction",

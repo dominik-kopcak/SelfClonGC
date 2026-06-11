@@ -39,6 +39,7 @@ Plot_recessive <- ggplot(data=filename_rec_GC, aes(x=Cycle, group=GC_var))+
 			    ymax=GC_rec_max, 
 			    ymin=GC_rec_min,colour=GC_rate),size=1)+
 		scale_colour_viridis_d(breaks=unique(filename_rec_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2)), direction=-1) + 
+		scale_shape_manual(name = "Variation in\nGC mutation rates", labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
 		guides(colour = guide_legend(title = "Starting GC rate\nper site")) +
 		
 	labs(y="Homozygous genotypes",

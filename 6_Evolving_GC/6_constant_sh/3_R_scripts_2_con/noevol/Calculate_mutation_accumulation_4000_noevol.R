@@ -18,7 +18,7 @@ N_lambda_values = length(lambda_values)
 
 N_replicates = 20
 
-Segregating_mutations_list_GC <-list.files(pattern="X_Sampled_individuals*")[grep(list.files(pattern="X_Sampled_individuals*"),pattern="_noevol",invert=F)]
+Segregating_mutations_list_GC <-list.files(pattern="Cycle_60000_X_Sampled_individuals*")[grep(list.files(pattern="Cycle_60000_X_Sampled_individuals*"),pattern="_noevol",invert=F)]
 	
 ### Extracting the number of segregeting mutations from files to vectors
 

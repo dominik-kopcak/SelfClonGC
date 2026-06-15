@@ -39,8 +39,8 @@ Plot_recessive <- ggplot(data=filename_rec_GC, aes(x=Cycle, group=GC_var))+
 			    ymax=GC_rec_max, 
 			    ymin=GC_rec_min,colour=GC_rate),size=1)+
 		scale_colour_viridis_d(breaks=unique(filename_rec_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2)), direction=-1) + 
-		scale_shape_manual(name = "Variation in\nGC mutation rates", labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
-		guides(colour = guide_legend(title = "Starting GC rate\nper site")) +
+		scale_shape_manual(breaks=unique(filename_rec_GC$GC_var), values=c(16,17), name = "Standard deviation in mitotic\ngene conversion mutation rates", labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
+		guides(colour = guide_legend(title = "Starting gene conversion\nrate per site")) +
 		
 	labs(y="Homozygous genotypes",
 	     x="Time")+
@@ -74,6 +74,7 @@ Plot_additive <- ggplot(data=filename_add_GC,aes(x=Cycle, group=GC_var))+
 			    ymin=GC_add_min/1000, colour=GC_rate), size=1)+
 	
 	scale_colour_viridis_d(guide = "none", direction=-1) + 
+	scale_shape_manual(breaks=unique(filename_rec_GC$GC_var), values=c(16,17), guide="none") +
 					    
 	labs(x="Time",
 	     y="Total mutation count\n(x 1000)",
@@ -101,8 +102,9 @@ Plot_relative <- ggplot(data=filename_rel_GC, aes(x=Cycle, group=GC_var)) +
 			    ymax=GC_rel_max, 
 			    ymin=GC_rel_min, colour=GC_rate), size=1)+
 			    
-		scale_colour_viridis_d(breaks=unique(filename_rec_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2)), direction=-1) + 
-		guides(colour = guide_legend(title = "Starting GC rate\nper site")) +
+		scale_colour_viridis_d(breaks=unique(filename_rel_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2)), direction=-1) + 
+		scale_shape_manual(breaks=unique(filename_rel_GC$GC_var), values=c(16,17), name = "Standard deviation in mitotic\ngene conversion mutation rates", labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
+		guides(colour = guide_legend(title = "Starting gene conversion\nrate per site")) +
 	
 	labs(y="Relative homozygosity",
 	     x="Time",

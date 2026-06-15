@@ -26,7 +26,8 @@ Selection_coefficient <- rep(s_values, each = N_h_values*N_gamma_values*N_lambda
 Dominance_coefficient <- rep(rep(h_values, each = N_gamma_values*N_lambda_values*Max_time*N_replicates), times = N_s_values)
 GC_rate <- rep(rep(gamma_values, each = N_lambda_values*Max_time*N_replicates), times = N_s_values*N_h_values)
 Mean_tract_length <- rep(rep(lambda_values, each = Max_time*N_replicates), times = N_s_values*N_h_values*N_gamma_values)
-Replicate <- rep(rep(c(1:N_replicates), each = Max_time), times = N_s_values*N_h_values*N_gamma_values*N_lambda_values)
+rep_temp <- c(1:N_replicates) %>% as.character(.) %>% sort %>% as.numeric
+Replicate <- rep(rep(rep_temp, each = Max_time), times = N_s_values*N_h_values*N_gamma_values*N_lambda_values)
 Time <- rep(c(1:Max_time), times = N_s_values*N_h_values*N_gamma_values*N_lambda_values*N_replicates)
 
 Mean_fitness_GC <-rep(c(0), each=N_s_values*N_h_values*N_gamma_values*N_lambda_values*Max_time*N_replicates)

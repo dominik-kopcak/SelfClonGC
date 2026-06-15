@@ -1,5 +1,8 @@
-library(dplyr)
 library(ggplot2)
+library(patchwork)
+library(dplyr)
+library(scales)
+library(tidyverse)
 
 h_values = c(0.2)
 
@@ -48,11 +51,11 @@ for (h_coefficient in h_values){
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(breaks=unique(Fitness_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2))) +
 		scale_alpha_manual(breaks = unique(Fitness_GC$GC_var), values = c(0.6, 0.3), guide='none') + 
-		scale_linetype_manual(name = "Variation in\nGC mutation rates", values = c("solid", "dotted"), labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
+		scale_linetype_manual(name = "Standard deviation in mitotic\ngene conversion mutation rates", values = c("solid", "dotted"), labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
 		labs(title="Population Fitness\nUnder Asexual Reproduction with GC",
 		     x="Time",
 		     y="Mean fitness")+
-		guides(fill = guide_legend(title = "Starting GC rate\nper site")) +
+		guides(fill = guide_legend(title = "Starting gene conversion\nrate per site")) +
 	     
 		theme(panel.grid.major=element_blank(),
     	           panel.grid.minor=element_blank(),
@@ -76,11 +79,11 @@ for (h_coefficient in h_values){
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(breaks=unique(Fitness_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2))) + 
 		scale_alpha_manual(breaks = unique(Fitness_GC$GC_var), values = c(0.6, 0.3), guide='none') + 
-		scale_linetype_manual(name = "Variation in\nGC mutation rates", values = c("solid", "dotted"), labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
+		scale_linetype_manual(name = "Standard deviation in mitotic\ngene conversion mutation rates", values = c("solid", "dotted"), labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
 		labs(title="Population Fitness Variance\nUnder Asexual Reproduction with GC",
 		     x="Time",
 		     y="Fitness variance")+
-		guides(fill = guide_legend(title = "Starting GC rate\nper site")) +
+		guides(fill = guide_legend(title = "Starting gene conversion\nrate per site")) +
 	     
 		theme(panel.grid.major=element_blank(),
     	           panel.grid.minor=element_blank(),
@@ -105,11 +108,11 @@ for (h_coefficient in h_values){
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(breaks=unique(Fitness_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2))) +
 		scale_alpha_manual(breaks = unique(Fitness_GC$GC_var), values = c(0.6, 0.3), guide='none') + 
-		scale_linetype_manual(name = "Variation in\nGC mutation rates", values = c("solid", "dotted"), labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
+		scale_linetype_manual(name = "Standard deviation in mitotic\ngene conversion mutation rates", values = c("solid", "dotted"), labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
 		labs(title="Evolving GC rate\nUnder Asexual Reproduction",
 		     x="Time",
-		     y="Evolving GC rate")+
-		guides(fill = guide_legend(title = "Starting GC rate\nper site")) +
+		     y="Mitotic gene conversion rate")+
+		guides(fill = guide_legend(title = "Starting gene conversion\nrate per site")) +
 	     
 		theme(panel.grid.major=element_blank(),
     	           panel.grid.minor=element_blank(),
@@ -129,7 +132,7 @@ for (h_coefficient in h_values){
 	    	   legend.text = element_text(size=20),
 	    	   legend.key.size = unit(1.5, "cm"))
 
-
+Plot_all <- Plot_mean_GC/Plot_evol_GC
 
 plot_mean_GC_name <- paste("Figure_mean_fitness_GC_", h_coefficient, "_WithEvol.png", sep="")
 ggsave(filename = plot_mean_GC_name,
@@ -151,4 +154,11 @@ ggsave(filename = plot_evolving_GC_name,
 	dpi = 300,
 	width = 14,
 	height = 12)
+
+# plot_all_name <- paste("Figure_all_", h_coefficient, "_WithEvol.png", sep="")
+# ggsave(filename = plot_all_name,
+	# plot = Plot_all,
+	# dpi = 300,
+	# width = 14,
+	# height = 12)
 }

@@ -22,9 +22,7 @@ g2_plot <- ggplot() +
 	geom_point(data = ID_df_nonconstant_selfing_sum, aes(x=Rate, y=Expected_g2), size = 4) + 
 	geom_errorbar(data = ID_df_nonconstant_selfing_sum, aes(x=Rate, ymin=Expected_g2-1.96*sd_g2/sqrt(replicate_number), ymax=Expected_g2+1.96*sd_g2/sqrt(replicate_number))) +
     scale_color_brewer(palette = "RdBu") + 
-	labs(x="Selfing rate",y=expression(paste("Identity disequilibrium (",g[2],")")), 
-		title="ID for selfing populations\nunder variable fitness effects",
-		caption=paste("variable s, h, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8 bp\nnumber of replicates = ", replicate_number, ", sample size = 50, run for 60 000 generations\n95% CI of g2 replicate mean and 95% of CI of each g2 estimates are shown\nwith alpha scaled to be 1 for all replicates", sep="")) + 
+	labs(x="Selfing rate",y=expression(paste("Identity disequilibrium (",g[2],")"))) + 
 	theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),
     	      panel.background=element_blank(),

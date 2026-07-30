@@ -59,10 +59,8 @@ Plot_variance_ <- ggplot() +
 
    	
 Plot_mean_ <- Plot_mean_ +
-	labs(title="Population Fitness\nUndner Asexuality (WF) and GC (non-WF)",
-	     x="Time",
+	labs(x="Time",
 	     y="Mean fitness",
-	     caption=paste("for both WF and non-WF: s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, number of replicates = 100,\nsample size = 50, run for 60 000 generations\nfor WF only: recombination rate = 4E-8\nfor non-WF only: mean GC tract length = 4 000 bp", sep=""),
 	     colour="Reproduction: ")+
 
 	scale_colour_manual(values = colours, labels=c("Complete cloning                              ", 
@@ -96,10 +94,8 @@ Plot_mean_ <- Plot_mean_ +
 	    	   
 		    	   
  Plot_variance_ <- Plot_variance_ +
-	labs(title="Population Fitness Variance\nUndner Asexuality (WF) and GC (non-WF)",
-	     x="Time",
+	labs(x="Time",
 	     y=expression("Fitness variance" %*% 10 ^ -3),
-	     caption=paste("for both WF and non-WF: s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, number of replicates = 100,\nsample size = 50, run for 60 000 generations\nfor WF only: recombination rate = 4E-8\nfor non-WF only: mean GC tract length = 4 000 bp", sep=""),
 	     colour="Reproduction: ")+
 
 	scale_colour_manual(values = colours, labels=c("Complete cloning                              ", 

@@ -140,9 +140,7 @@ r2_plot_all <- (r2_plot_0 + r2_plot_02 + r2_plot_04) / (r2_plot_06 + r2_plot_08 
 	      
 	      legend.position="none") 
 	      
-r2_plot_all <- r2_plot_all + plot_annotation(title = "Linkage disequlibrium for asexual populations",
-					       caption = paste("variable s, h, mutation rate = 4E-9, population size = 5 000, genome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nsample size = 50, run for 60 000 generations, thin by 10kb, MAF = 5%, bin size = 500 kb, maximum number of points per bin = ", max_ee, sep = ""),
-					     theme = theme(plot.caption = element_text(size=20, hjust=0.5)))
+r2_plot_all <- r2_plot_all + plot_annotation(theme = theme(plot.caption = element_text(size=20, hjust=0.5)))
 
 ggsave(filename = "LD_r2_nonconstant_cloning_all_rates.png",
 	plot = r2_plot_all,

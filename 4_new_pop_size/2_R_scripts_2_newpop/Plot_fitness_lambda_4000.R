@@ -46,10 +46,8 @@ for (h_coefficient in h_values){
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(labels=c(expression(4 %*% 10 ^ -2), expression(4 %*% 10 ^ -3), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -5), 
 				      expression(4 %*% 10 ^ -6), expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -8))) +
-		labs(title="Population Fitness\nUnder Asexual Reproduction with GC",
-		     x="Time",
-		     y="Mean fitness",
-		     caption=paste("s = 0.005, h = ", h_coefficient, ", mutation rate = 2E-9, population size = 10 000\ngenome is 1 chromosome with size 25 Mbp, number of replicates = 20\nsample size = 50, run for 60 000 generations, mean GC tract length = 4 000 bp", sep=""))+
+		labs(x="Time",
+		     y="Mean fitness")+
 		guides(fill = guide_legend(title = "Mean GC rate\nper site")) +
 	     
 		theme(panel.grid.major=element_blank(),
@@ -74,10 +72,8 @@ for (h_coefficient in h_values){
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(labels=c(expression(4 %*% 10 ^ -2), expression(4 %*% 10 ^ -3), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -5), 
 				      expression(4 %*% 10 ^ -6), expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -8))) + 
-		labs(title="Population Fitness Variance\nUnder Asexual Reproduction with GC",
-		     x="Time",
-		     y="Fitness variance",
-		     caption=paste("s = 0.005, h = ", h_coefficient, ", mutation rate = 2E-9, population size = 10 000\ngenome is 1 chromosome with size 25 Mbp, number of replicates = 20\nsample size = 50, run for 60 000 generations, mean GC tract length = 4 000 bp", sep=""))+
+		labs(x="Time",
+		     y="Fitness variance")+
 		guides(fill = guide_legend(title = "Mean GC rate\nper site")) +
 	     
 		theme(panel.grid.major=element_blank(),

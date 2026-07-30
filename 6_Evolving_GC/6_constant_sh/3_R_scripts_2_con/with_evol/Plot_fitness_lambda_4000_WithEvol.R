@@ -54,8 +54,6 @@ for (h_coefficient in h_values){
 	 Plot_mean_GC <- Plot_mean_GC +
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(breaks=unique(Fitness_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2))) +
-#		scale_alpha_manual(breaks = unique(Fitness_GC$GC_var), values = c(0.6, 0.3), guide='none') + 
-#		scale_linetype_manual(name = "Standard deviation in mitotic\ngene conversion mutation rates", values = c("solid", "62"), labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
 		facet_grid(cols = vars(GC_var), labeller = label_parsed) +
 		labs(x="Time",
 		     y="Mean fitness")+
@@ -85,8 +83,6 @@ for (h_coefficient in h_values){
 	  Plot_variance_GC <- Plot_variance_GC +
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(breaks=unique(Fitness_GC$GC_rate), labels=c(expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -2))) + 
-#		scale_alpha_manual(breaks = unique(Fitness_GC$GC_var), values = c(0.6, 0.3), guide='none') + 
-#		scale_linetype_manual(name = "Standard deviation in mitotic\ngene conversion mutation rates", values = c("solid", "62"), labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
 		facet_grid(cols = vars(GC_var), labeller = label_parsed) +
 		labs(x="Time",
 		     y="Fitness variance")+
@@ -117,12 +113,9 @@ for (h_coefficient in h_values){
   	 	scale_y_log10() +
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(breaks=unique(Fitness_GC$GC_rate), guide = "none") +
-#		scale_alpha_manual(breaks = unique(Fitness_GC$GC_var), values = c(0.6, 0.3), guide='none') + 
-#		scale_linetype_manual(name = "Standard deviation in mitotic\ngene conversion mutation rates", values = c("solid", "62"), labels=c(expression(1 %*% 10 ^ -8), expression(1 %*% 10 ^ -7))) +
 		facet_grid(cols = vars(GC_var), labeller = label_parsed) +
 		labs(x="Time",
 		     y="Mitotic gene conversion rate")+
-#		guides(fill = guide_legend(title = "Starting gene conversion\nrate per site")) +
 	     
 		theme(panel.grid.major=element_blank(),
     	           panel.grid.minor=element_blank(),

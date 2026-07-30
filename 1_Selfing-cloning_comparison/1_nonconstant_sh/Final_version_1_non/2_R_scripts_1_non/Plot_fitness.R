@@ -42,10 +42,8 @@ Plot_mean_selfing <- Plot_mean_selfing +
 
 scale_fill_viridis_d() + 
 scale_colour_viridis_d(guide = "none") + 
-labs(title="Population Fitness\nUnder Selfing Reproduction",
-     x="Time",
-     y="Mean fitness",
-     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 20, sample size = 50, run for 60 000 generations", sep=""))+
+labs(x="Time",
+     y="Mean fitness")+
 guides(colour = guide_legend(title = "Selfing rate", override.aes = list(size = 10)),
        fill = "none") +
 
@@ -70,10 +68,8 @@ theme(panel.grid.major=element_blank(),
 Plot_mean_cloning <- Plot_mean_cloning +
 scale_fill_viridis_d() +
 scale_colour_viridis_d(guide = "none") + 
-labs(title="Population Fitness\nunder Asexual Reproduction",
-     x="Time",
-     y="Mean fitness",
-     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 20, sample size = 50, run for 60 000 generations", sep=""))+
+labs(x="Time",
+     y="Mean fitness")+
 guides(colour = guide_legend(title = "Cloning rate", override.aes = list(size = 10)),
        fill = "none") +
 
@@ -98,10 +94,8 @@ theme(panel.grid.major=element_blank(),
 Plot_variance_selfing <- Plot_variance_selfing +
 scale_colour_viridis_d(guide = "none") + 
 scale_fill_viridis_d() + 
-labs(title="Population Fitness Variance\nUnder Selfing Reproduction",
-     x="Time",
-     y="Fitness variance",
-     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 20, sample size = 50, run for 60 000 generations", sep=""))+
+labs(x="Time",
+     y="Fitness variance")+
 guides(colour = guide_legend(title = "Selfing rate", override.aes = list(size = 10)),
        fill = "none") +
 
@@ -126,10 +120,8 @@ theme(panel.grid.major=element_blank(),
 Plot_variance_cloning <- Plot_variance_cloning +
 scale_colour_viridis_d(guide = "none") + 
 scale_fill_viridis_d() +  
-labs(title="Population Fitness Variance\nUnder Asexual Reproduction",
-     x="Time",
-     y="Fitness variance",
-     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 20, sample size = 50, run for 60 000 generations", sep=""))+
+labs(x="Time",
+     y="Fitness variance")+
 guides(colour = guide_legend(title = "Cloning rate", override.aes = list(size = 10)),
        fill = "none") +
 

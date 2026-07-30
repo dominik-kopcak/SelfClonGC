@@ -31,7 +31,8 @@ Variance_fitness_list_cloning <- Variance_fitness_list[grepl("cloning", Variance
 Selection_coefficient <- rep(s_values, each = N_h_values*N_uniparenting_rates*Max_time*N_replicates)
 Dominance_coefficient <- rep(rep(h_values, each = N_uniparenting_rates*Max_time*N_replicates), times = N_s_values)
 Uniparenting_rate <- rep(rep(Uniparenting_rates, each = Max_time*N_replicates), times = N_s_values*N_h_values)
-Replicate <- rep(rep(c(1:N_replicates), each = Max_time), times = N_s_values*N_h_values*N_uniparenting_rates)
+rep_temp <- c(1:N_replicates) %>% as.character(.) %>% sort %>% as.numeric
+Replicate <- rep(rep(rep_temp, each = Max_time), times = N_s_values*N_h_values*N_uniparenting_rates)
 Time <- rep(c(1:Max_time), times = N_s_values*N_h_values*N_uniparenting_rates*N_replicates)
 
 Mean_fitness_selfing <-rep(c(0), each=N_s_values*N_h_values*N_uniparenting_rates*Max_time*N_replicates)

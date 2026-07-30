@@ -44,7 +44,8 @@ for (y in Segregating_mutations_list_cloning){
 # following the naming convetion of the SLiM output file
 
 GC_rate <- rep(rep(gamma_values, each=N_replicates))
-Replicate <- rep(c(1:N_replicates), times = N_gamma_values)
+rep_temp <- c(1:N_replicates) %>% as.character(.) %>% sort %>% as.numeric
+Replicate <- rep(rep_temp, times = N_gamma_values)
 
 Recessive_load_cloning <- data.frame(GC_rate, Replicate, N_seg_homo_genotypes_cloning)
 Additive_load_cloning <- data.frame(GC_rate, Replicate, N_segregating_mutations_cloning)

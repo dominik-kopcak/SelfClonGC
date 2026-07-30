@@ -55,8 +55,7 @@ Plot_recessive <- ggplot()+
 			    ymin=Cloning_rec_min/1000), color="darkolivegreen", size=1)+
 	
 	labs(x="Rate of uniparental reproduction",
-	     y="Homozygous genotypes\n(x 1000)",	     
-	     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = ", replicate_number,", sample size = 50, run for 60 000 generations", sep=""),
+	     y="Homozygous genotypes\n(x 1000)",
 	     colour="Reproduction: ")+
 
 	theme(panel.grid.major=element_blank(),
@@ -97,8 +96,7 @@ Plot_additive <- ggplot()+
 			key_glyph = draw_key_rect)+
 	
 	labs(x="Rate of uniparental reproduction",
-	     y="Total mutation count\n(x 1000)",
-	     title="Accumulation of Mutations\nUnder Uniparental Reproduction")+
+	     y="Total mutation count\n(x 1000)")+
 
 	     
 	theme(panel.grid.major=element_blank(),
@@ -136,8 +134,7 @@ Plot_additive_2 <- ggplot()+
 			key_glyph = draw_key_rect)+
 	
 	labs(x="Rate of uniparental reproduction",
-	     y="Total mutation count",
-	     title="Accumulation of Mutations\nUnder Uniparental Reproduction")+
+	     y="Total mutation count")+
 
 	     
 	theme(panel.grid.major=element_blank(),
@@ -175,9 +172,7 @@ Plot_relative <- ggplot()+
 			    ymin=Cloning_rel_min), color="darkolivegreen", size=1)+
 	
 	labs(x="Rate of uniparental reproduction",
-	     y="Relative homozygosity",	     
-	     title="Accumulation of Mutations\nUnder Uniparental Reproduction",
-	     caption=paste("sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = ", replicate_number,", sample size = 50, run for 60 000 generations", sep=""),
+	     y="Relative homozygosity",
 	     colour="Reproduction: ")+
 
 	theme(panel.grid.major=element_blank(),

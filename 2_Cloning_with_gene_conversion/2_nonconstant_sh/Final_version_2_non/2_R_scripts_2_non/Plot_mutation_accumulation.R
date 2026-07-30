@@ -32,8 +32,7 @@ Plot_recessive <- ggplot()+
 			    ymin=GC_rec_min), size=1)+
 	
 	labs(x=expression("Mean GC rate per site (" %*% "4 )"),
-	     y="Homozygous genotypes",
-	     caption=paste("variable s,h, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp,\nnumber of replicates = ", replicate_number,", sample size = 50, run for 60 000 generations", sep=""))+
+	     y="Homozygous genotypes")+
 	
 	 theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),
@@ -63,8 +62,7 @@ Plot_additive <- ggplot()+
 			    ymin=GC_add_min/1000), size=1)+
 	
 	labs(x=expression("Mean GC rate per site (" %*% "4 )"),
-	     y="Total mutation count\n(x 1000)",
-	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC")+
+	     y="Total mutation count\n(x 1000)")+
       
 	theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),
@@ -92,10 +90,8 @@ Plot_relative <- ggplot()+
 			    ymax=GC_rel_max, 
 			    ymin=GC_rel_min), size=1)+
 	
-	labs( x=expression("Mean GC rate per site (" %*% "4 )"),
-	     y="Relative homozygosity",
-	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC",
-	     caption=paste("variable s,h, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp,\nnumber of replicates = ", replicate_number,", sample size = 50, run for 60 000 generations", sep=""))+
+	labs(x=expression("Mean GC rate per site (" %*% "4 )"),
+	     y="Relative homozygosity")+
 	
 	 theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),

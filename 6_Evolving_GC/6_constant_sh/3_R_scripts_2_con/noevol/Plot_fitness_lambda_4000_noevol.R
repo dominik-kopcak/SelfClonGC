@@ -45,8 +45,7 @@ for (h_coefficient in h_values){
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(labels=c(expression(4 %*% 10 ^ -2), expression(4 %*% 10 ^ -3), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -5), 
 				      expression(4 %*% 10 ^ -6), expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -8))) +
-		labs(title="Population Fitness\nUnder Asexual Reproduction with GC",
-		     x="Time",
+		labs(x="Time",
 		     y="Mean fitness")+
 		guides(fill = guide_legend(title = "Mean GC rate\nper site")) +
 	     
@@ -72,8 +71,7 @@ for (h_coefficient in h_values){
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d(labels=c(expression(4 %*% 10 ^ -2), expression(4 %*% 10 ^ -3), expression(4 %*% 10 ^ -4), expression(4 %*% 10 ^ -5), 
 				      expression(4 %*% 10 ^ -6), expression(4 %*% 10 ^ -7), expression(4 %*% 10 ^ -8))) + 
-		labs(title="Population Fitness Variance\nUnder Asexual Reproduction with GC",
-		     x="Time",
+		labs(x="Time",
 		     y="Fitness variance")+
 		guides(fill = guide_legend(title = "Mean GC rate\nper site")) +
 	     

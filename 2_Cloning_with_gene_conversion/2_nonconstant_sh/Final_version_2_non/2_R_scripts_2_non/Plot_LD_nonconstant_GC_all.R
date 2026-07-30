@@ -127,9 +127,7 @@ r2_plot_all <- (r2_plot_11 + r2_plot_10 + r2_plot_09) / (r2_plot_08 + r2_plot_07
 	      
 	      legend.position="none") 
 	      
-r2_plot_all <- r2_plot_all + plot_annotation(title = "Linkage disequlibrium for asexual populations with gene conversion",
-					       caption = paste("variable s, h, mutation rate = 4E-9, population size = 5 000, genome is 1 chromosome with size 25 Mbp, mean GC tract length = 4 000 bp\nsample size = 50, run for 60 000 generations, thin by 10kb, MAF = 5%, bin size = 500 kb, maximum number of points per bin = ", max_ee, sep = ""),
-					     theme = theme(plot.caption = element_text(size=20, hjust=0.5)))
+r2_plot_all <- r2_plot_all + plot_annotation(theme = theme(plot.caption = element_text(size=20, hjust=0.5)))
 
 ggsave(filename = "LD_r2_nonconstant_GC_all_rates.png",
 	plot = r2_plot_all,

@@ -23,7 +23,8 @@ print(length(Mean_fitness_list_cloning))
 print(length(Mean_fitness_list_selfing))
 
 Uniparenting_rate <- rep(rep(Uniparenting_rates, each = Max_time*N_replicates))
-Replicate <- rep(rep(c(1:N_replicates), each = Max_time), times = N_uniparenting_rates)
+rep_temp <- c(1:N_replicates) %>% as.character(.) %>% sort %>% as.numeric
+Replicate <- rep(rep(rep_temp, each = Max_time), times = N_uniparenting_rates)
 Time <- rep(c(1:Max_time), times = N_uniparenting_rates*N_replicates)
 
 Mean_fitness_selfing <-rep(c(0), each=N_uniparenting_rates*Max_time*N_replicates)

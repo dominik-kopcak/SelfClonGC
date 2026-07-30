@@ -67,8 +67,7 @@ Plot_additive <- ggplot()+
 			    ymin=GC_add_min/1000), size=1)+
 			    
 	labs(x=expression("Mean GC rate per site (" %*% "4 )"),
-	     y="Total mutation count\n(x 1000)",
-	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC")+
+	     y="Total mutation count\n(x 1000)")+
 	
 	
 	theme(panel.grid.major=element_blank(),
@@ -97,8 +96,7 @@ Plot_relative <- ggplot()+
 			    ymin=GC_rel_min), size=1)+
 	
 	labs(y="Relative homozygosity",
-	     x=expression("Mean GC rate per site (" %*% "4 )"),
-	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC")+
+	     x=expression("Mean GC rate per site (" %*% "4 )"))+
 	     
 	 theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),

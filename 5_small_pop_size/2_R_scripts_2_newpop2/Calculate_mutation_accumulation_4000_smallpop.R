@@ -52,7 +52,8 @@ Selection_coefficient <- rep(s_values, each = N_h_values*N_lambda_values*N_gamma
 Dominance_coefficient <- rep(rep(h_values, each = N_gamma_values*N_lambda_values*N_replicates), times = N_s_values)
 GC_rate <- rep(rep(gamma_values, each=N_lambda_values*N_replicates), times = N_s_values*N_h_values)
 Mean_tract_length <- rep(rep(lambda_values, each=N_replicates), times = N_gamma_values*N_s_values*N_h_values)
-Replicate <- rep(c(1:N_replicates), times = N_gamma_values*N_lambda_values*N_s_values*N_h_values)
+rep_temp <- c(1:N_replicates) %>% as.character(.) %>% sort %>% as.numeric
+Replicate <- rep(rep_temp, times = N_gamma_values*N_lambda_values*N_s_values*N_h_values)
 
 Recessive_load_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, Replicate, N_seg_homo_genotypes_GC)
 Additive_load_GC <- data.frame(Selection_coefficient, Dominance_coefficient, GC_rate, Mean_tract_length, Replicate, N_segregating_mutations_GC)

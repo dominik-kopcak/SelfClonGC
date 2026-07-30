@@ -64,9 +64,7 @@ Plot_recessive <- ggplot(data=filename_rec_GC, aes(x=Cycle, group=GC_var))+
     	   legend.text = element_text(size=20),
     	   legend.key.size = unit(1.5, "cm"))
 	      		      
-#	  scale_x_log10(breaks = c(10**seq(-8, -2, 1)),labels = trans_format("log10", math_format(10^.x)))+
-#     scale_y_continuous(breaks=c(0,250,500,750,1000))                   
-	         
+         
 Plot_additive <- ggplot(data=filename_add_GC,aes(x=Cycle, group=GC_var))+
 	geom_point(data=filename_add_GC, aes(y=Expected_additive_load/1000, colour=GC_rate, shape=GC_var), size=3)+
 	geom_linerange(data=filename_add_GC, 
@@ -77,8 +75,7 @@ Plot_additive <- ggplot(data=filename_add_GC,aes(x=Cycle, group=GC_var))+
 	scale_shape_manual(breaks=unique(filename_rec_GC$GC_var), values=c(16,17), guide="none") +
 					    
 	labs(x="Time",
-	     y="Total mutation count\n(x 1000)",
-	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC")+
+	     y="Total mutation count\n(x 1000)")+
 	
 	
 	theme(panel.grid.major=element_blank(),
@@ -107,8 +104,7 @@ Plot_relative <- ggplot(data=filename_rel_GC, aes(x=Cycle, group=GC_var)) +
 		guides(colour = guide_legend(title = "Starting gene conversion\nrate per site")) +
 	
 	labs(y="Relative homozygosity",
-	     x="Time",
-	     title="Accumulation of Mutations\nUnder Asexual Reproduction with GC")+
+	     x="Time")+
 	     
 	 theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),

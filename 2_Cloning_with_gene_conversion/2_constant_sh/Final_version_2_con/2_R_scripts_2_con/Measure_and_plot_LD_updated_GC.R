@@ -72,12 +72,7 @@ for (rate in rates){
 		geom_smooth(aes(color=Rep)) + 
 		geom_smooth(col='black',size=2,linetype="dashed", se=FALSE) + 
 	    scale_color_brewer(palette = "RdBu") +     
-	    labs(x="Distance (Mb)",y=expression(paste("Mean LD (",r^2,")")), 
-		title=paste("LD for gamma ", gsub("_", "", gsub("g", "g ", rate))),
-		     caption=paste("number of replicates plotted: ", length(unique(mainres$Rep)),
-		     		   "\nthin by 10kb, MAF = 5%",
-		     		   "\nbin size = 500 kb",
-		     		   "\nmaximum number of points per bin = ", max_ee)) +  
+	    labs(x="Distance (Mb)",y=expression(paste("Mean LD (",r^2,")"))) +  
 		xlim(0,maxd) + 
 		ylim(0,1) + 
 		#scale_x_continuous(labels=comma) + 
@@ -90,12 +85,7 @@ for (rate in rates){
 		geom_smooth(aes(color=Rep)) + 
 		geom_smooth(col='black',size=2,linetype="dashed", se=FALSE) + 
 	    scale_color_brewer(palette = "RdBu") + 
-		labs(x="Distance (Mb)",y="Mean LD (D', absolute value)", 
-		     title=paste("LD for gamma ", gsub("_", "", gsub("g", "g ", rate))),
-		     caption=paste("number of replicates plotted: ", length(unique(mainres$Rep)),
-		     		   "\nthin by 10kb, MAF = 5%",
-		     		   "\nbin size = 500 kb",
-		     		   "\nmaximum number of points per bin = ", max_ee)) +  
+		labs(x="Distance (Mb)",y="Mean LD (D', absolute value)") +  
 		xlim(0,maxd) + 
 		ylim(0,1) + 
 		theme_bw(base_size=20) + 

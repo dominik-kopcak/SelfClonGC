@@ -71,7 +71,8 @@ for (y in Segregating_mutations_list_cloning){
 # following the naming convetion of the SLiM output file
 
 Uniparenting_rate <- rep(rep(Uniparenting_rates, each=N_replicates))
-Replicate <- rep(c(1:N_replicates), times = N_uniparenting_rates)
+rep_temp <- c(1:N_replicates) %>% as.character(.) %>% sort %>% as.numeric
+Replicate <- rep(rep_temp, times = N_uniparenting_rates)
  
 Recessive_load_selfing <- data.frame(Uniparenting_rate, Replicate, N_seg_homo_genotypes_selfing)
 Additive_load_selfing <- data.frame(Uniparenting_rate, Replicate, N_segregating_mutations_selfing)

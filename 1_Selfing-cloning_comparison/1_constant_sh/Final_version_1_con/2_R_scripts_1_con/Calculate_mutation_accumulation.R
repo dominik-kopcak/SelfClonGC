@@ -78,7 +78,8 @@ for (y in Segregating_mutations_list_cloning){
 Selection_coefficient <- rep(s_values, each = N_h_values*N_uniparenting_rates*N_replicates)
 Dominance_coefficient <- rep(rep(h_values, each = N_uniparenting_rates*N_replicates), times = N_s_values)
 Uniparenting_rate <- rep(rep(Uniparenting_rates, each=N_replicates), times = N_s_values*N_h_values)
-Replicate <- rep(c(1:N_replicates), times = N_uniparenting_rates*N_s_values*N_h_values)
+rep_temp <- c(1:N_replicates) %>% as.character(.) %>% sort %>% as.numeric
+Replicate <- rep(rep_temp, times = N_uniparenting_rates*N_s_values*N_h_values)
 
 Recessive_load_selfing <- data.frame(Selection_coefficient, Dominance_coefficient, Uniparenting_rate, Replicate, N_seg_homo_genotypes_selfing)
 Additive_load_selfing <- data.frame(Selection_coefficient, Dominance_coefficient, Uniparenting_rate, Replicate, N_segregating_mutations_selfing)

@@ -62,10 +62,8 @@ for (h_coefficient in h_values){
 	Plot_mean_selfing <- Plot_mean_selfing +
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d() + 
-		labs(title="Population Fitness\nUnder Selfing Reproduction",
-		     x="Time",
-		     y="Mean fitness",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 100, sample size = 50, run for 60 000 generations, every 2nd value shown", sep=""))+
+		labs(x="Time",
+		     y="Mean fitness")+
 		guides(fill = guide_legend(title = "Selfing rate")) +
 	     
 		theme(panel.grid.major=element_blank(),
@@ -89,10 +87,8 @@ for (h_coefficient in h_values){
 	 Plot_mean_cloning <- Plot_mean_cloning +
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d() +
-		labs(title="Population Fitness\nUnder Asexual Reproduction",
-		     x="Time",
-		     y="Mean fitness",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 100, sample size = 50, run for 60 000 generations, every 2nd value shown", sep=""))+
+		labs(x="Time",
+		     y="Mean fitness")+
 		guides(fill = guide_legend(title = "Asexuality rate")) +
 	     
 		theme(panel.grid.major=element_blank(),
@@ -116,10 +112,8 @@ for (h_coefficient in h_values){
 	 Plot_variance_selfing <- Plot_variance_selfing +
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d() + 
-		labs(title="Population Fitness Variance\nUnder Selfing Reproduction",
-		     x="Time",
-		     y="Fitness variance",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 100, sample size = 50, run for 60 000 generations, every 2nd value shown", sep=""))+
+		labs(x="Time",
+		     y="Fitness variance")+
 		guides(fill = guide_legend(title = "Selfing rate")) +
 	     
 		theme(panel.grid.major=element_blank(),
@@ -143,10 +137,8 @@ for (h_coefficient in h_values){
 	  Plot_variance_cloning <- Plot_variance_cloning +
 		scale_colour_viridis_d(guide = "none") + 
 		scale_fill_viridis_d() +  
-		labs(title="Population Fitness Variance\nUnder Asexual Reproduction",
-		     x="Time",
-		     y="Fitness variance",
-		     caption=paste("s = 0.01, h = ", h_coefficient, ", mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, recombination rate = 4E-8\nnumber of replicates = 100, sample size = 50, run for 60 000 generations, every 2nd value shown", sep=""))+
+		labs(x="Time",
+		     y="Fitness variance")+
 		guides(fill = guide_legend(title = "Asexuality rate")) +
 	     
 		theme(panel.grid.major=element_blank(),

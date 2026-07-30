@@ -72,8 +72,7 @@ Plot_recessive <- ggplot()+
 			    ymin=Selfing_rec_min), color="black", size=1)+
 	
 	labs(x="Rate of selfing",
-	     y="Homozygous\ngenotypes",
-	     caption="for both WF and non-WF: sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, sample size = 50, run for 60 000 generations\nfor WF only: recombination rate = 4E-8, number of replicates = 20,\nfor non-WF only: mean GC tract length = 4 000 bp, number of replicates = 10")+
+	     y="Homozygous\ngenotypes")+
 	theme(panel.grid.major=element_blank(),
     	      panel.grid.minor=element_blank(),
     	      panel.background=element_blank(),
@@ -128,7 +127,6 @@ Plot_recessive_2 <- ggplot()+
 	
 	labs(x="Rate of selfing",
 	     y="Homozygous\ngenotypes",
-	     caption="for both WF and non-WF: sh model, mutation rate = 4E-9, population size = 5 000\ngenome is 1 chromosome with size 25 Mbp, sample size = 50, run for 60 000 generations\nfor WF only: recombination rate = 4E-8, number of replicates = 20,\nfor non-WF only: mean GC tract length = 4 000 bp, number of replicates = 10",
 	     colour="Reproduction: ")+
 	guides(colour = guide_legend(override.aes = list(size = 10)))+
 	theme(panel.grid.major=element_blank(),
@@ -195,7 +193,6 @@ Plot_additive <- ggplot()+
 	
 	labs(y="Total mutation count\n(x1000)",
 	     x="Rate of uniparental reproduction",
-	     title="Accumulation of Mutations\nUnder Selfing and Asexuality with GC\nAnd a Distribution of Fitness Effects",
 	     colour="Reproduction: ")+
 	guides(colour = guide_legend(override.aes = list(size = 10)))+
 	
@@ -257,7 +254,6 @@ Plot_additive_2 <- ggplot()+
 	
 	labs(y="Total mutation count\n(x1000)",
 	     x="Rate of uniparental reproduction",
-	     title="Accumulation of Mutations\nUnder Selfing and Asexuality with GC\nAnd a Distribution of Fitness Effects",
 	     colour="Reproduction: ")+
 	guides(colour = guide_legend(override.aes = list(size = 10)))+
 	theme(panel.grid.major=element_blank(),

@@ -16,9 +16,6 @@ Fitness_GC <- transform(Fitness_GC_in,
 	GC_var = factor(GC_var, levels=unique(Fitness_GC_in$GC_var), labels=c(expression("Standard Deviation = " ~ 1 %*% 10 ^ -8), expression("Standard Deviation = " ~ 1 %*% 10 ^ -7))))
 Fitness_GC$GC_rate <- as.factor(Fitness_GC$GC_rate)
 
-#Fitness_GC$GC_var <- as.factor(Fitness_GC$GC_var)
-#GC_var_labs <- c("1e-08" = expression(), "1e-07" = expression("Standard Deviation = " ~ 1 %*% 10 ^ -7))
-
 for (h_coefficient in h_values){
 	
 	fitness_GC_subset_0 <- Fitness_GC %>%
@@ -65,19 +62,19 @@ for (h_coefficient in h_values){
     	   	   axis.line = element_line(color="black"),
     	   	   
     	   	   strip.text = element_text(face = "bold", size = rel(2.5)),
-    	   	   panel.spacing = unit(2, "lines"),
+    	   	   panel.spacing = unit(6, "lines"),
     	   	   
 	    	   plot.title=element_text(size=40, hjust=0.5, face="bold"),
 	    	   plot.caption=element_text(size=20, hjust=0.5),
-	    	   axis.title.y=element_text(size=35),
-	    	   axis.title.x=element_text(size=35),
+	    	   axis.title.y=element_text(size=40),
+	    	   axis.title.x=element_text(size=40),
 	      
-	    	   axis.text.x=element_text(size=35),
-	    	   axis.text.y=element_text(size=35),
+	    	   axis.text.x=element_text(size=40),
+	    	   axis.text.y=element_text(size=40),
 	    	   
 	    	   legend.key = element_blank(),
-	    	   legend.title = element_text(size=20),
-	    	   legend.text = element_text(size=20),
+	    	   legend.title = element_text(size=30),
+	    	   legend.text = element_text(size=30),
 	    	   legend.key.size = unit(1.5, "cm"))
 	    	   
 	  Plot_variance_GC <- Plot_variance_GC +
@@ -94,19 +91,19 @@ for (h_coefficient in h_values){
     	   	   axis.line = element_line(color="black"),
     	   	   
        	   	   strip.text = element_text(face = "bold", size = rel(2.5)),
-       	   	   panel.spacing = unit(2, "lines"),
+       	   	   panel.spacing = unit(6, "lines"),
     	   	   
 	    	   plot.title=element_text(size=40, hjust=0.5, face="bold"),
 	    	   plot.caption=element_text(size=20, hjust=0.5),
-	    	   axis.title.y=element_text(size=35),
-	    	   axis.title.x=element_text(size=35),
+	    	   axis.title.y=element_text(size=40),
+	    	   axis.title.x=element_text(size=40),
 	      
-	    	   axis.text.x=element_text(size=35),
-	    	   axis.text.y=element_text(size=35),
+	    	   axis.text.x=element_text(size=40),
+	    	   axis.text.y=element_text(size=40),
 	    	   
 	    	   legend.key = element_blank(),
-	    	   legend.title = element_text(size=20),
-	    	   legend.text = element_text(size=20),
+	    	   legend.title = element_text(size=30),
+	    	   legend.text = element_text(size=30),
 	    	   legend.key.size = unit(1.5, "cm"))
 	  
 	  Plot_evol_GC <- Plot_evol_GC +
@@ -123,19 +120,19 @@ for (h_coefficient in h_values){
     	   	   axis.line = element_line(color="black"),
     	   	   
     	   	   strip.text = element_text(face = "bold", size = rel(2.5)),
-       	   	   panel.spacing = unit(2, "lines"),    	   	   
+       	   	   panel.spacing = unit(6, "lines"),    	   	   
     	   	   
 	    	   plot.title=element_text(size=40, hjust=0.5, face="bold"),
 	    	   plot.caption=element_text(size=20, hjust=0.5),
-	    	   axis.title.y=element_text(size=35),
-	    	   axis.title.x=element_text(size=35),
+	    	   axis.title.y=element_text(size=40),
+	    	   axis.title.x=element_text(size=40),
 	      
-	    	   axis.text.x=element_text(size=35),
-	    	   axis.text.y=element_text(size=35),
+	    	   axis.text.x=element_text(size=40),
+	    	   axis.text.y=element_text(size=40),
 	    	   
 	    	   legend.key = element_blank(),
-	    	   legend.title = element_text(size=20),
-	    	   legend.text = element_text(size=20),
+	    	   legend.title = element_text(size=30),
+	    	   legend.text = element_text(size=30),
 	    	   legend.key.size = unit(1.5, "cm"))
 
 Plot_all <- Plot_mean_GC/Plot_evol_GC
